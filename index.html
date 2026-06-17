@@ -2,24 +2,20 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>F. Mohamed Huzaifah — UX/UI Designer</title>
-  <meta name="description"
-    content="UX/UI Designer specializing in user research, interaction design, and creating intuitive digital experiences. 200+ Figma screens designed.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>HMF · UX/UI Designer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <style>
+    /* ===== RESET & VARIABLES ===== */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-
     :root {
       --void: #04060F;
       --navy: #070B1A;
@@ -36,12 +32,9 @@
       --font-head: 'Syne', sans-serif;
       --font-body: 'Inter', sans-serif;
     }
-
     html {
       scroll-behavior: smooth;
-      font-size: 16px;
     }
-
     body {
       background: var(--void);
       color: var(--text);
@@ -50,7 +43,6 @@
       cursor: none;
       line-height: 1.7;
     }
-
     ::-webkit-scrollbar {
       width: 3px;
     }
@@ -61,42 +53,40 @@
       background: var(--violet);
       border-radius: 2px;
     }
+   #cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99999;  /* ← CHANGE FROM 9999 TO 99999 */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--violet);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.1s ease, width 0.3s, height 0.3s, background 0.3s;
+  mix-blend-mode: screen;
+}
 
-    #cursor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9999;
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--violet);
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: transform 0.1s ease, width 0.3s, height 0.3s, background 0.3s;
-      mix-blend-mode: screen;
-    }
-
-    #cursor-ring {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 9998;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      border: 1.5px solid rgba(139, 92, 246, 0.5);
-      pointer-events: none;
-      transform: translate(-50%, -50%);
-      transition: transform 0.25s ease, width 0.3s, height 0.3s;
-    }
-
+#cursor-ring {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99998;  /* ← CHANGE FROM 9998 TO 99998 */
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(139, 92, 246, 0.5);
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  transition: transform 0.25s ease, width 0.3s, height 0.3s;
+}
     a,
     button,
     .project-card {
       cursor: none;
     }
-
+    /* ===== NAV ===== */
     nav {
       position: fixed;
       top: 0;
@@ -109,13 +99,11 @@
       justify-content: space-between;
       transition: background 0.4s, backdrop-filter 0.4s;
     }
-
     nav.scrolled {
       background: rgba(4, 6, 15, 0.85);
       backdrop-filter: blur(20px);
       border-bottom: 1px solid rgba(139, 92, 246, 0.1);
     }
-
     .nav-logo {
       font-family: var(--font-head);
       font-size: 1.1rem;
@@ -128,7 +116,6 @@
     .nav-logo span {
       color: var(--violet);
     }
-
     .nav-links {
       display: flex;
       gap: 2.5rem;
@@ -166,7 +153,6 @@
     .nav-links a.active-nav::after {
       width: 100%;
     }
-
     .nav-hire {
       font-size: 0.78rem;
       font-weight: 600;
@@ -184,7 +170,7 @@
       background: var(--violet);
       border-color: var(--violet);
     }
-
+    /* ===== PARTICLES ===== */
     #particles {
       position: fixed;
       inset: 0;
@@ -192,7 +178,6 @@
       pointer-events: none;
       overflow: hidden;
     }
-
     .particle {
       position: absolute;
       border-radius: 50%;
@@ -200,7 +185,6 @@
       animation: floatParticle linear infinite;
       pointer-events: none;
     }
-
     @keyframes floatParticle {
       0% {
         transform: translateY(100vh) scale(0);
@@ -217,15 +201,13 @@
         opacity: 0;
       }
     }
-
     .ambient {
       position: absolute;
       border-radius: 50%;
       filter: blur(80px);
       pointer-events: none;
     }
-
-    /* ===== 1. HERO ===== */
+    /* ===== HERO ===== */
     #hero {
       min-height: 100vh;
       display: flex;
@@ -234,7 +216,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero-ambient-1 {
       top: -10%;
       right: -5%;
@@ -256,7 +237,6 @@
       height: 20vw;
       background: radial-gradient(circle, rgba(34, 211, 238, 0.06), transparent 65%);
     }
-
     .hero-inner {
       position: relative;
       z-index: 2;
@@ -268,13 +248,11 @@
       max-width: 1400px;
       margin: 0 auto;
     }
-
     .hero-left {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
-
     .hero-label {
       display: inline-flex;
       align-items: center;
@@ -292,7 +270,6 @@
       background: var(--cyan);
       animation: pulse 2s infinite;
     }
-
     @keyframes pulse {
       0%,
       100% {
@@ -304,7 +281,6 @@
         transform: scale(0.8);
       }
     }
-
     .hero-h1 {
       font-family: var(--font-head);
       font-size: clamp(3rem, 5.5vw, 5.5rem);
@@ -322,14 +298,12 @@
     .hero-h1 .violet {
       color: var(--violet);
     }
-
     .hero-sub {
       font-size: clamp(1rem, 1.4vw, 1.2rem);
       color: var(--muted);
       line-height: 1.75;
       max-width: 500px;
     }
-
     .hero-stats {
       display: flex;
       gap: 2.5rem;
@@ -348,14 +322,12 @@
       margin-top: 0.1rem;
       letter-spacing: 0.04em;
     }
-
     .hero-actions {
       display: flex;
       gap: 1rem;
       align-items: center;
       flex-wrap: wrap;
     }
-
     .btn-primary {
       display: inline-flex;
       align-items: center;
@@ -378,7 +350,6 @@
       transform: translateY(-2px);
       box-shadow: 0 12px 40px rgba(139, 92, 246, 0.45);
     }
-
     .btn-ghost {
       display: inline-flex;
       align-items: center;
@@ -398,21 +369,18 @@
       border-color: var(--violet);
       color: var(--violet);
     }
-
     .hero-right {
       position: relative;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-
     .photo-orbit {
       position: relative;
       width: min(460px, 90vw);
       height: min(460px, 90vw);
       transform: translateX(-60px);
     }
-
     .photo-glow-ring {
       position: absolute;
       inset: -30px;
@@ -422,13 +390,11 @@
       filter: blur(20px);
       opacity: 0.3;
     }
-
     @keyframes spinSlow {
       to {
         transform: rotate(360deg);
       }
     }
-
     .photo-glow-ring-2 {
       position: absolute;
       inset: -15px;
@@ -436,7 +402,6 @@
       border: 1px solid rgba(139, 92, 246, 0.3);
       animation: spinSlow 12s linear infinite reverse;
     }
-
     .photo-glow-ring-3 {
       position: absolute;
       inset: -40px;
@@ -444,7 +409,6 @@
       border: 1px dashed rgba(79, 70, 229, 0.2);
       animation: spinSlow 20s linear infinite;
     }
-
     .photo-circle {
       position: absolute;
       inset: 0;
@@ -454,7 +418,6 @@
       border: 2px solid rgba(139, 92, 246, 0.25);
       animation: floatImg 6s ease-in-out infinite;
     }
-
     @keyframes floatImg {
       0%,
       100% {
@@ -467,19 +430,16 @@
         transform: translateY(-6px) rotate(-0.5deg);
       }
     }
-
     .photo-circle img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: top center;
     }
-
     .badge-orbit {
       position: absolute;
       inset: 0;
     }
-
     .skill-badge {
       position: absolute;
       display: flex;
@@ -498,7 +458,6 @@
       animation: badgeFloat ease-in-out infinite;
       transform-origin: center;
     }
-
     .skill-badge .bd {
       width: 6px;
       height: 6px;
@@ -506,7 +465,6 @@
       background: var(--violet);
       flex-shrink: 0;
     }
-
     @keyframes badgeFloat {
       0%,
       100% {
@@ -516,22 +474,19 @@
         transform: translate(0, -6px) scale(1.02);
       }
     }
-
-    /* ===== FIGMA TICKER ===== */
+    /* ===== TICKER ===== */
     #figma-bar {
       position: relative;
       z-index: 2;
       padding: 2.5rem 3rem;
       overflow: hidden;
     }
-
     .figma-ticker {
       display: flex;
       gap: 0;
       overflow: hidden;
       mask-image: linear-gradient(90deg, transparent, black 10%, black 90%, transparent);
     }
-
     .figma-ticker-inner {
       display: flex;
       gap: 3rem;
@@ -540,7 +495,6 @@
       flex-shrink: 0;
       white-space: nowrap;
     }
-
     @keyframes tickerScroll {
       0% {
         transform: translateX(0);
@@ -549,7 +503,6 @@
         transform: translateX(-50%);
       }
     }
-
     .ticker-item {
       display: flex;
       align-items: center;
@@ -564,18 +517,15 @@
     .ticker-item.hl {
       color: var(--violet);
     }
-
     /* ===== SECTIONS ===== */
     section {
       position: relative;
     }
-
     .section-inner {
       max-width: 1300px;
       margin: 0 auto;
       padding: 7rem 3rem;
     }
-
     .section-label {
       font-size: 0.7rem;
       letter-spacing: 0.25em;
@@ -594,7 +544,6 @@
       height: 1px;
       background: var(--violet);
     }
-
     .section-h2 {
       font-family: var(--font-head);
       font-size: clamp(2.2rem, 4vw, 3.5rem);
@@ -603,14 +552,12 @@
       letter-spacing: -0.02em;
       margin-bottom: 1.25rem;
     }
-
     .section-sub {
       color: var(--muted);
       font-size: 1.05rem;
       line-height: 1.8;
       max-width: 600px;
     }
-
     .reveal {
       opacity: 0;
       transform: translateY(40px);
@@ -620,12 +567,10 @@
       opacity: 1;
       transform: translateY(0);
     }
-
-    /* ===== ABOUT + SKILLS COMBINED ===== */
+    /* ===== ABOUT ===== */
     #about {
       background: var(--navy);
     }
-
     #about .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -633,20 +578,17 @@
       align-items: start;
       margin-top: 2rem;
     }
-
     .about-text p {
       color: var(--muted);
       line-height: 1.9;
       margin-bottom: 1.2rem;
       font-size: 1rem;
     }
-
     .philosophy-cards {
       display: flex;
       flex-direction: column;
       gap: 1.25rem;
     }
-
     .philo-card {
       background: linear-gradient(135deg, rgba(17, 21, 48, 0.9), rgba(13, 17, 40, 0.9));
       border: 1px solid rgba(139, 92, 246, 0.12);
@@ -679,35 +621,11 @@
       color: var(--muted);
       line-height: 1.7;
     }
-
-    .skills-section {
-      margin-top: 3rem;
-      padding-top: 3rem;
-      border-top: 1px solid rgba(139, 92, 246, 0.15);
-    }
-
-    .skills-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-    }
-
-    .skills-block-title {
-      font-family: var(--font-head);
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--cyan);
-      margin-bottom: 1.25rem;
-    }
-
     .skills-grid {
       display: flex;
       flex-wrap: wrap;
       gap: 0.6rem;
     }
-
     .skill-chip {
       padding: 0.45rem 1rem;
       border-radius: 100px;
@@ -727,7 +645,6 @@
       box-shadow: 0 0 20px rgba(139, 92, 246, 0.2);
       transform: translateY(-2px);
     }
-
     .tool-chip {
       padding: 0.6rem 1.25rem;
       border-radius: 0.75rem;
@@ -744,14 +661,21 @@
       box-shadow: 0 8px 30px rgba(139, 92, 246, 0.2);
       transform: translateY(-3px);
     }
-
-    /* ===== WORK + PROCESS COMBINED ===== */
+    .skills-block-title {
+      font-family: var(--font-head);
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.25rem;
+    }
+    /* ===== WORK ===== */
     #work {
       background: var(--void);
       padding: 7rem 0;
       overflow: hidden;
     }
-
     #work .section-header {
       padding: 0 3rem;
       max-width: 1300px;
@@ -760,13 +684,11 @@
       align-items: flex-end;
       justify-content: space-between;
     }
-
     .carousel-controls {
       display: flex;
       align-items: center;
       gap: 0.75rem;
     }
-
     .cc-btn {
       width: 44px;
       height: 44px;
@@ -790,7 +712,6 @@
       opacity: .35;
       cursor: not-allowed;
     }
-
     .cc-auto {
       display: flex;
       align-items: center;
@@ -802,7 +723,6 @@
       border: none;
       padding: 0;
     }
-
     .cc-pill {
       width: 32px;
       height: 18px;
@@ -827,13 +747,11 @@
     .cc-pill.off .cc-knob {
       left: 17px;
     }
-
     .carousel-wrap {
       position: relative;
       overflow: hidden;
       padding: 3rem 0;
     }
-
     .carousel-track {
       display: flex;
       gap: 24px;
@@ -843,7 +761,6 @@
     .carousel-track:active {
       cursor: grabbing;
     }
-
     .project-card {
       flex-shrink: 0;
       width: 340px;
@@ -857,7 +774,6 @@
       user-select: none;
       -webkit-user-select: none;
     }
-
     .project-card.active {
       transform: scale(1.15);
       opacity: 1;
@@ -865,17 +781,14 @@
       border-color: rgba(139, 92, 246, .4);
       box-shadow: 0 25px 60px rgba(0, 0, 0, .45);
     }
-
     .project-card:not(.active) {
       transform: scale(.82);
       opacity: .45;
     }
-
     .project-card:hover:not(.active) {
       transform: scale(.88);
       opacity: .75;
     }
-
     .card-cover {
       height: 220px;
       position: relative;
@@ -886,7 +799,6 @@
       filter: brightness(0.85) saturate(1.05);
       transition: filter 0.4s ease, transform 0.4s ease;
     }
-
     .card-cover-glow {
       position: absolute;
       inset: 0;
@@ -896,7 +808,6 @@
           transparent 100%);
       z-index: 2;
     }
-
     .card-info {
       padding: 1.5rem;
     }
@@ -912,7 +823,6 @@
       line-height: 1.65;
       margin-bottom: 1.25rem;
     }
-
     .card-cta {
       display: inline-flex;
       align-items: center;
@@ -935,14 +845,12 @@
       color: white;
       box-shadow: 0 6px 24px rgba(139, 92, 246, 0.35);
     }
-
     .carousel-dots {
       display: flex;
       justify-content: center;
       gap: 0.5rem;
       margin-top: 1.75rem;
     }
-
     .cdot {
       width: 6px;
       height: 6px;
@@ -955,20 +863,17 @@
       width: 22px;
       background: var(--violet);
     }
-
     .process-section {
       padding: 5rem 3rem 3rem;
       max-width: 1300px;
       margin: 0 auto;
     }
-
     .process-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1.5rem;
       margin-top: 3.5rem;
     }
-
     .process-card {
       background: linear-gradient(135deg, var(--card), var(--surface));
       border: 1px solid rgba(139, 92, 246, 0.1);
@@ -997,7 +902,6 @@
     .process-card:hover::before {
       opacity: 1;
     }
-
     .process-num {
       font-family: var(--font-head);
       font-size: 3rem;
@@ -1021,18 +925,15 @@
       color: var(--muted);
       line-height: 1.7;
     }
-
-    /* ===== JOURNEY + EXPERIENCE COMBINED ===== */
+    /* ===== JOURNEY ===== */
     #journey {
       background: var(--navy);
     }
-
     .journey-timeline {
       position: relative;
       margin-top: 3rem;
       padding-left: 3rem;
     }
-
     .journey-line {
       position: absolute;
       left: 0;
@@ -1041,7 +942,6 @@
       width: 2px;
       background: linear-gradient(to bottom, transparent, var(--violet), var(--cyan), transparent);
     }
-
     .journey-item {
       position: relative;
       padding-bottom: 3rem;
@@ -1053,7 +953,6 @@
       opacity: 1;
       transform: translateX(0);
     }
-
     .journey-dot {
       position: absolute;
       left: -3.4rem;
@@ -1069,7 +968,6 @@
     .journey-item:hover .journey-dot {
       transform: scale(1.4);
     }
-
     .journey-year {
       font-family: var(--font-head);
       font-size: 0.75rem;
@@ -1090,13 +988,11 @@
       line-height: 1.75;
       max-width: 560px;
     }
-
     .experience-section {
       margin-top: 4rem;
       padding-top: 3rem;
       border-top: 1px solid rgba(139, 92, 246, 0.15);
     }
-
     .exp-card {
       background: linear-gradient(135deg, var(--card), var(--surface));
       border: 1px solid rgba(139, 92, 246, 0.12);
@@ -1110,7 +1006,6 @@
     .exp-card:hover {
       box-shadow: 0 20px 60px rgba(139, 92, 246, 0.1);
     }
-
     .exp-company {
       font-size: 0.75rem;
       letter-spacing: 0.15em;
@@ -1130,7 +1025,6 @@
       color: var(--muted);
       margin-bottom: 1.25rem;
     }
-
     .exp-list {
       list-style: none;
       display: flex;
@@ -1149,19 +1043,16 @@
       color: var(--cyan);
       flex-shrink: 0;
     }
-
     /* ===== EDUCATION ===== */
     #edu {
       background: var(--void);
     }
-
     .edu-achieve-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 4rem;
       margin-top: 3rem;
     }
-
     .edu-item {
       padding-bottom: 1.5rem;
       border-bottom: 1px solid var(--dim);
@@ -1183,7 +1074,6 @@
       font-size: 0.78rem;
       color: var(--muted);
     }
-
     .achieve-list {
       list-style: none;
       display: flex;
@@ -1204,7 +1094,6 @@
       font-size: 0.7rem;
       margin-top: 0.25rem;
     }
-
     /* ===== CONTACT ===== */
     #contact {
       background: var(--navy);
@@ -1212,7 +1101,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .contact-ambient {
       position: absolute;
       top: 50%;
@@ -1223,7 +1111,6 @@
       background: radial-gradient(ellipse, rgba(139, 92, 246, 0.12), transparent 70%);
       pointer-events: none;
     }
-
     .contact-h {
       font-family: var(--font-head);
       font-size: clamp(2.5rem, 5vw, 5rem);
@@ -1237,20 +1124,17 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
     .contact-sub {
       color: var(--muted);
       font-size: 1.05rem;
       margin-bottom: 3rem;
     }
-
     .contact-links {
       display: flex;
       justify-content: center;
       gap: 1rem;
       flex-wrap: wrap;
     }
-
     .contact-chip {
       display: inline-flex;
       align-items: center;
@@ -1263,13 +1147,14 @@
       font-size: 0.85rem;
       font-weight: 500;
       transition: all 0.3s;
+      background: transparent;
+      cursor: none;
     }
     .contact-chip:hover {
       border-color: var(--violet);
       color: var(--text);
       box-shadow: 0 0 30px rgba(139, 92, 246, 0.2);
     }
-
     footer {
       padding: 2rem 3rem;
       border-top: 1px solid rgba(255, 255, 255, 0.04);
@@ -1279,7 +1164,6 @@
       font-size: 0.78rem;
       color: var(--dim);
     }
-
     .ripple {
       position: absolute;
       border-radius: 50%;
@@ -1288,14 +1172,150 @@
       transform: scale(0);
       animation: rippleOut 0.6s ease-out forwards;
     }
-
     @keyframes rippleOut {
       to {
         transform: scale(4);
         opacity: 0;
       }
     }
+    /* ===== FORM MODAL ===== */
+   .form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 6, 15, 0.8);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;  /* ← LOWER Z-INDEX SO CURSOR STAYS ABOVE */
+  padding: 1.5rem;
+}
+    .form-overlay.open {
+      display: flex;
+    }
+    .form-card {
+      background: var(--surface);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 2rem;
+      padding: 2.5rem 2.8rem;
+      max-width: 480px;
+      width: 100%;
+      position: relative;
+      box-shadow: 0 40px 80px rgba(0, 0, 0, 0.6);
+      transform: scale(0.95) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s;
+      opacity: 0;
+    }
+    .form-overlay.open .form-card {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+    .form-card .close-btn {
+      position: absolute;
+      top: 1.2rem;
+      right: 1.5rem;
+      background: none;
+      border: none;
+      color: var(--muted);
+      font-size: 1.6rem;
+      cursor: none;
+      transition: color 0.2s;
+    }
+    .form-card .close-btn:hover {
+      color: var(--text);
+    }
+    .form-card h3 {
+      font-family: var(--font-head);
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+    .form-card p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.8rem;
+    }
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.8rem 1rem;
+      background: rgba(13, 17, 40, 0.6);
+      border: 1px solid var(--dim);
+      border-radius: 0.75rem;
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--violet);
+    }
+    .form-group textarea {
+      min-height: 90px;
+      resize: vertical;
+    }
+    .form-submit {
+      width: 100%;
+      padding: 0.9rem;
+      background: linear-gradient(135deg, var(--violet), var(--electric));
+      border: none;
+      border-radius: 100px;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+      letter-spacing: 0.06em;
+      cursor: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .form-submit:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 30px rgba(139, 92, 246, 0.4);
+    }
+    .form-submit:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 1rem 0;
+    }
+    .form-success.show {
+      display: block;
+    }
+    .form-success i {
+      font-size: 3rem;
+      color: var(--cyan);
+      margin-bottom: 0.5rem;
+    }
+    .form-error {
+      display: none;
+      text-align: center;
+      padding: 0.5rem;
+      color: #f87171;
+      font-size: 0.85rem;
+      background: rgba(248, 113, 113, 0.1);
+      border-radius: 0.5rem;
+      margin-top: 0.5rem;
+    }
+    .form-error.show {
+      display: block;
+    }
 
+    /* ===== RESPONSIVE ===== */
     @media (hover: none) and (pointer: coarse) {
       #cursor,
       #cursor-ring {
@@ -1310,7 +1330,6 @@
         cursor: pointer !important;
       }
     }
-
     @media (max-width: 768px) {
       .carousel-track {
         display: flex;
@@ -1321,10 +1340,6 @@
         max-width: 340px;
       }
       #about .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .skills-layout {
         grid-template-columns: 1fr;
         gap: 2rem;
       }
@@ -1369,8 +1384,10 @@
       .process-section {
         padding: 3rem 1.5rem;
       }
+      .form-card {
+        padding: 2rem 1.5rem;
+      }
     }
-
     @media (max-width: 480px) {
       .process-grid {
         grid-template-columns: 1fr;
@@ -1400,12 +1417,12 @@
 </head>
 
 <body>
-  <!-- ===== CURSOR ===== -->
+
   <div id="cursor"></div>
   <div id="cursor-ring"></div>
   <div id="particles"></div>
 
-  <!-- ===== NAVIGATION - 5 LINKS ===== -->
+  <!-- NAV -->
   <nav id="navbar">
     <a class="nav-logo" href="#"><span>HMF</span> Portfolio</a>
     <ul class="nav-links">
@@ -1415,14 +1432,10 @@
       <li><a href="#edu">Education</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <div style="display:flex; gap:10px; align-items:center;">
-      <a class="nav-hire" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:3aed75a1-5ef2-44f8-b692-e5d73d5df6bc" target="_blank">
-  <i class="fas fa-file-pdf"></i> Resume
-</a>
-    </div>
+    <a class="nav-hire" href="https://acrobat.adobe.com/id/urn:aaid:sc:ap:3aed75a1-5ef2-44f8-b692-e5d73d5df6bc" target="_blank"><i class="fas fa-file-pdf"></i> Resume</a>
   </nav>
 
-  <!-- ===== 1. HERO ===== -->
+  <!-- HERO -->
   <section id="hero">
     <div class="ambient hero-ambient-1"></div>
     <div class="ambient hero-ambient-2"></div>
@@ -1431,23 +1444,23 @@
       <div class="hero-left">
         <div class="hero-label reveal">
           <span class="hero-label-dot"></span>
-          <span id="h-label">UX / UI Designer · Chennai, India</span>
+          <span>UX / UI Designer · Chennai, India</span>
         </div>
-        <h1 class="hero-h1" id="h-title">
+        <h1 class="hero-h1">
           <span class="line"><span class="word">Crafting</span></span>
           <span class="line"><span class="word">Digital</span></span>
           <span class="line"><span class="word violet">Experiences</span></span>
           <span class="line"><span class="word">That</span> <span class="word">Matter</span></span>
         </h1>
-        <p class="hero-sub reveal" id="h-sub"></p>
-        <div class="hero-stats reveal" id="h-stats"></div>
+        <p class="hero-sub reveal">Crafting intuitive digital experiences that live at the intersection of beauty and function.</p>
+        <div class="hero-stats reveal">
+          <div><div class="hero-stat-n">80+</div><div class="hero-stat-l">Figma Screens</div></div>
+          <div><div class="hero-stat-n">5+</div><div class="hero-stat-l">UX Case Studies</div></div>
+          <div><div class="hero-stat-n">2</div><div class="hero-stat-l">UX Certification</div></div>
+        </div>
         <div class="hero-actions reveal">
           <a class="btn-primary" href="#work">View My Work ↓</a>
-         <a class="btn-ghost"
-href="https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com"
-target="_blank">
-Get In Touch
-</a>
+          <a class="btn-ghost" href="#" id="openFormBtn"><i class="fas fa-paper-plane"></i> Get In Touch</a>
         </div>
       </div>
       <div class="hero-right">
@@ -1455,10 +1468,8 @@ Get In Touch
           <div class="photo-glow-ring"></div>
           <div class="photo-glow-ring-2"></div>
           <div class="photo-glow-ring-3"></div>
-          <div class="photo-circle" id="photoCircle">
-            <img id="profileImg"
-            src="https://raw.githubusercontent.com/huzai-design/UIUXfolio/refs/heads/main/WhatsApp%20Image%202025-12-08%20at%2011.29.52%20AM%20(3).jpeg"
-            alt="F. Mohamed Huzaifah">
+          <div class="photo-circle">
+            <img src="https://raw.githubusercontent.com/huzai-design/UIUXfolio/refs/heads/main/WhatsApp%20Image%202025-12-08%20at%2011.29.52%20AM%20(3).jpeg" alt="F. Mohamed Huzaifah">
           </div>
           <div class="badge-orbit" id="badgeOrbit"></div>
         </div>
@@ -1466,21 +1477,25 @@ Get In Touch
     </div>
   </section>
 
-  <!-- ===== FIGMA TICKER ===== -->
+  <!-- TICKER -->
   <div id="figma-bar">
     <div class="figma-ticker" id="ticker"></div>
   </div>
 
-  <!-- ===== 2. ABOUT + SKILLS ===== -->
+  <!-- ABOUT -->
   <section id="about">
     <div class="section-inner">
       <div class="section-label reveal">About Me</div>
       <h2 class="section-h2 reveal">A Designer Who<br><span style="color:var(--violet)">Thinks in Systems</span></h2>
-
       <div class="about-grid">
         <div class="about-text">
-          <div id="about-body"></div>
-          <div class="philosophy-cards" id="philo-cards"></div>
+          <p class="reveal">I'm a UX/UI Designer passionate about translating complex problems into elegant, user-centered solutions. With 200+ Figma screens designed and deep expertise in the full design process — from research to high-fidelity prototypes — I bring ideas to life with precision and purpose.</p>
+          <p class="reveal">Fluent in English, Urdu, and Tamil. Currently based in Chennai, India and open to remote and hybrid opportunities worldwide.</p>
+          <div class="philosophy-cards">
+            <div class="philo-card reveal"><div class="philo-icon">◎</div><div><div class="philo-title">Research First</div><div class="philo-desc">Every design decision is grounded in empathy, data, and deep understanding of user needs.</div></div></div>
+            <div class="philo-card reveal"><div class="philo-icon">⬡</div><div><div class="philo-title">Simplicity is Power</div><div class="philo-desc">Great design removes friction, not features. Clarity is the highest form of sophistication.</div></div></div>
+            <div class="philo-card reveal"><div class="philo-icon">◈</div><div><div class="philo-title">Pixel-Perfect Craft</div><div class="philo-desc">Details matter. From micro-interactions to macro layouts, precision defines premium experiences.</div></div></div>
+          </div>
         </div>
         <div>
           <div class="skills-block-title reveal" style="color:var(--violet)">UX Skills</div>
@@ -1494,7 +1509,7 @@ Get In Touch
     </div>
   </section>
 
-  <!-- ===== 3. WORK + PROCESS ===== -->
+  <!-- WORK -->
   <section id="work">
     <div class="section-header">
       <div>
@@ -1504,9 +1519,7 @@ Get In Touch
       <div class="carousel-controls">
         <button class="cc-auto" id="autoBtn">
           <span id="autoLabel" style="font-size:0.75rem">Autoplay</span>
-          <div class="cc-pill" id="ccPill">
-            <div class="cc-knob"></div>
-          </div>
+          <div class="cc-pill" id="ccPill"><div class="cc-knob"></div></div>
         </button>
         <button id="prevBtn" class="cc-btn">←</button>
         <button id="nextBtn" class="cc-btn">→</button>
@@ -1516,7 +1529,6 @@ Get In Touch
       <div class="carousel-track" id="ctrack"></div>
     </div>
     <div class="carousel-dots" id="cdots"></div>
-
     <div class="process-section">
       <div class="section-label reveal" style="justify-content:center; margin-bottom:1rem;">My Process</div>
       <h2 class="section-h2 reveal" style="text-align:center;">How I Work</h2>
@@ -1525,7 +1537,7 @@ Get In Touch
     </div>
   </section>
 
-  <!-- ===== 4. JOURNEY + EXPERIENCE ===== -->
+  <!-- JOURNEY -->
   <section id="journey">
     <div class="section-inner">
       <div class="section-label reveal">Origin Story</div>
@@ -1534,7 +1546,6 @@ Get In Touch
       <div class="journey-timeline" id="timeline">
         <div class="journey-line"></div>
       </div>
-
       <div class="experience-section">
         <div class="section-label reveal" style="color:var(--cyan);">Professional Background</div>
         <h2 class="section-h2 reveal" style="font-size:clamp(1.8rem, 3vw, 2.8rem);">Experience</h2>
@@ -1543,7 +1554,7 @@ Get In Touch
     </div>
   </section>
 
-  <!-- ===== 5. EDUCATION ===== -->
+  <!-- EDUCATION -->
   <section id="edu">
     <div class="section-inner">
       <div class="section-label reveal">Credentials</div>
@@ -1558,7 +1569,7 @@ Get In Touch
     </div>
   </section>
 
-  <!-- ===== 6. CONTACT ===== -->
+  <!-- CONTACT -->
   <section id="contact">
     <div class="section-inner" style="max-width:900px; margin:0 auto;">
       <div class="contact-ambient"></div>
@@ -1571,38 +1582,49 @@ Get In Touch
     </div>
   </section>
 
-  <!-- ===== FOOTER ===== -->
+  <!-- FOOTER -->
   <footer>
     <span>© 2026 F. Mohamed Huzaifah</span>
     <span>UX/UI Designer · Built with passion</span>
   </footer>
 
-  <!-- ===== JAVASCRIPT ===== -->
+  <!-- ===== FORM MODAL (mailto with form data) ===== -->
+  <div class="form-overlay" id="formOverlay">
+    <div class="form-card">
+      <button class="close-btn" id="closeFormBtn">&times;</button>
+      <h3>Let's talk</h3>
+      <p>Fill the form and I'll get back to you within 24h.</p>
+      <form id="contactForm" onsubmit="sendEmail(event)">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
+        </div>
+        <div class="form-group">
+          <label>Your email</label>
+          <input type="email" name="email" id="formEmail" placeholder="alex@studio.com" required>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" id="formMessage" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="formSubmitBtn"><i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message</button>
+        <div class="form-success" id="formSuccess">
+  <i class="fas fa-check-circle"></i>
+  <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
+</div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // ── CONFIG ──
+    // ===== DATA =====
     const C = {
-      person: {
-        name: "F. Mohamed Huzaifah",
-        tagline: "Crafting intuitive digital experiences that live at the intersection of beauty and function.",
-        bio: "I'm a UX/UI Designer passionate about translating complex problems into elegant, user-centered solutions. With 200+ Figma screens designed and deep expertise in the full design process — from research to high-fidelity prototypes — I bring ideas to life with precision and purpose.",
-        email: "huzaifahmalik2470@gmail.com",
-        phone: "+91 7338933440",
-        linkedin: "https://www.linkedin.com/in/mohamed-huzaifah-627aaa393/",
-        behance: "https://www.linkedin.com/in/mohamed-huzaifah-627aaa393/",
-        stats: [
-        { num: "80+", label: "Figma Screens" },
-        { num: "5+", label: "UX Case Studies" },
-        { num: "2", label: "UX Certification" }
-]
-      },
-      philosophy: [
-        { icon: "◎", title: "Research First", desc: "Every design decision is grounded in empathy, data, and deep understanding of user needs." },
-        { icon: "⬡", title: "Simplicity is Power", desc: "Great design removes friction, not features. Clarity is the highest form of sophistication." },
-        { icon: "◈", title: "Pixel-Perfect Craft", desc: "Details matter. From micro-interactions to macro layouts, precision defines premium experiences." }
-      ],
       skills: {
-        ux: ["User Research", "User Personas", "Journey Mapping", "Information Architecture", "User Flows", "Wireframing", "Low-Fi Prototypes", "High-Fi Prototypes", "Interaction Design", "Design Systems", "UX Writing", "Usability Testing", "Accessibility", "Responsive Design", "Design Thinking", "A/B Testing"],
-        tools: ["Figma", "FigJam", "Spline", "Adobe XD", "Photoshop", "Dora AI", "Sketch","Miro "]
+        ux: ["User Research", "User Personas", "Journey Mapping", "Information Architecture", "User Flows", "Wireframing",
+          "Low-Fi Prototypes", "High-Fi Prototypes", "Interaction Design", "Design Systems", "UX Writing",
+          "Usability Testing", "Accessibility", "Responsive Design", "Design Thinking", "A/B Testing"
+        ],
+        tools: ["Figma", "FigJam", "Spline", "Adobe XD", "Photoshop", "Dora AI", "Sketch", "Miro"]
       },
       process: [
         { num: "01", label: "Discover", desc: "User interviews, competitive analysis, heuristic evaluation, and stakeholder alignment." },
@@ -1652,12 +1674,11 @@ Get In Touch
         link: "https://www.behance.net/gallery/224451125/UX-Case-Study-Thermix"
       }, {
         id: 6,
-        title: "Tranquilo-Car Dashboard ",
+        title: "Tranquilo-Car Dashboard",
         desc: "A personal finance tracker with spending insights, intelligent budgeting tools, and clean data visualisation for financial wellness.",
         cover: "https://raw.githubusercontent.com/huzai-design/sssssss/refs/heads/main/Cover-Image6.png",
         link: "https://www.behance.net/gallery/223748829/Vehicle-panel"
-      }, 
-    ],
+      }],
       experience: [{
         company: "Tata Consultancy Services",
         role: "Process Analyst",
@@ -1681,7 +1702,7 @@ Get In Touch
       ]
     };
 
-    // ── CURSOR ──
+    // ---- CURSOR ----
     const cur = document.getElementById('cursor');
     const curR = document.getElementById('cursor-ring');
     let mx = 0,
@@ -1702,87 +1723,61 @@ Get In Touch
     }
     animCursor();
 
-    document.querySelectorAll('a,button,.project-card,.skill-chip,.tool-chip').forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        cur.style.width = '20px';
-        cur.style.height = '20px';
-        cur.style.background = 'rgba(139,92,246,0.8)';
-        curR.style.width = '60px';
-        curR.style.height = '60px';
-      });
-      el.addEventListener('mouseleave', () => {
-        cur.style.width = '12px';
-        cur.style.height = '12px';
-        cur.style.background = 'var(--violet)';
-        curR.style.width = '36px';
-        curR.style.height = '36px';
-      });
-    });
+    document.querySelectorAll('a,button,.project-card,.skill-chip,.tool-chip,input,textarea,.form-submit,.close-btn,.form-card').forEach(el => {
+  el.addEventListener('mouseenter', () => {
+    cur.style.width = '20px';
+    cur.style.height = '20px';
+    cur.style.background = 'rgba(139,92,246,0.8)';
+    curR.style.width = '60px';
+    curR.style.height = '60px';
+  });
+  el.addEventListener('mouseleave', () => {
+    cur.style.width = '12px';
+    cur.style.height = '12px';
+    cur.style.background = 'var(--violet)';
+    curR.style.width = '36px';
+    curR.style.height = '36px';
+  });
+});
 
-    document.addEventListener('click', e => {
-      const r = document.createElement('span');
-      r.className = 'ripple';
-      r.style.cssText = `left:${e.clientX - 20}px;top:${e.clientY - 20}px;width:40px;height:40px;`;
-      document.body.appendChild(r);
-      setTimeout(() => r.remove(), 600);
-    });
-
-    // ── NAV SCROLL ──
-    window.addEventListener('scroll', () => {
-      document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 60);
-    });
-
-    // ── PARTICLES ──
+    // ---- PARTICLES ----
     const pc = document.getElementById('particles');
     for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
       const s = 2 + Math.random() * 6;
-      p.style.cssText = `left:${Math.random() * 100}%;width:${s}px;height:${s}px;opacity:${0.1 + Math.random() * 0.4};animation-duration:${10 + Math.random() * 20}s;animation-delay:${-Math.random() * 20}s;`;
+      p.style.cssText =
+        `left:${Math.random() * 100}%;width:${s}px;height:${s}px;opacity:${0.1 + Math.random() * 0.4};animation-duration:${10 + Math.random() * 20}s;animation-delay:${-Math.random() * 20}s;`;
       pc.appendChild(p);
     }
 
-    // ── RENDER CONTENT ──
-    document.getElementById('h-sub').textContent = C.person.tagline;
-
-    const hs = document.getElementById('h-stats');
-    C.person.stats.forEach(s => {
-      hs.innerHTML += `<div><div class="hero-stat-n">${s.num}</div><div class="hero-stat-l">${s.label}</div></div>`;
-    });
-
-    const badges = ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems", "Information Architecture", "Interaction Design", "Usability Testing", "Design Thinking"];
+    // ---- BADGES ----
+    const badges = ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems",
+      "Information Architecture", "Interaction Design", "Usability Testing", "Design Thinking"
+    ];
     const orbit = document.getElementById('badgeOrbit');
     badges.forEach((b, i) => {
       const angle = (i / badges.length) * 360;
       const rad = angle * Math.PI / 180;
       const r = 50;
-      const cx = 50;
-      const cy = 50;
-
+      const cx = 50,
+        cy = 50;
       let bx = cx + r * Math.cos(rad);
       let by = cy + r * Math.sin(rad);
-
-      if (b === "Interaction Design") {
-        bx -= 12;
-      }
-
+      if (b === "Interaction Design") bx -= 12;
       const el = document.createElement('div');
       el.className = 'skill-badge';
       el.innerHTML = `<span class="bd"></span>${b}`;
-      el.style.cssText = `left:${bx}%;top:${by}%;transform:translate(-50%,-50%);animation-duration:${3 + i * 0.4}s;animation-delay:${-i * 0.3}s;`;
+      el.style.cssText =
+        `left:${bx}%;top:${by}%;transform:translate(-50%,-50%);animation-duration:${3 + i * 0.4}s;animation-delay:${-i * 0.3}s;`;
       orbit.appendChild(el);
     });
 
-    const photoOrbit = document.getElementById('photoOrbit');
-    document.addEventListener('mousemove', e => {
-      const dx = (e.clientX / window.innerWidth - 0.5) * 15;
-      const dy = (e.clientY / window.innerHeight - 0.5) * 10;
-
-      photoOrbit.style.transform =
-        `translate(${dx - 60}px, ${dy}px)`;
-    });
-
-    const tickerItems = ["200+ Screens Designed", "·", "UX/UI Designer", "·", "UX Research", "·", "Design Thinking Process", "·", "Userflows", "·", "Information Architecture", "·", "Interaction Design", "·", "Wireframing", "·", "Prototyping", "·", "·", "A/B Testing", "·", "Usability Testing"];
+    // ---- TICKER ----
+    const tickerItems = ["200+ Screens Designed", "·", "UX/UI Designer", "·", "UX Research", "·",
+      "Design Thinking Process", "·", "Userflows", "·", "Information Architecture", "·", "Interaction Design", "·",
+      "Wireframing", "·", "Prototyping", "·", "·", "A/B Testing", "·", "Usability Testing"
+    ];
     const tin = document.getElementById('ticker');
     for (let r = 0; r < 3; r++) {
       const div = document.createElement('div');
@@ -1793,76 +1788,72 @@ Get In Touch
       tin.appendChild(div);
     }
 
-    const ab = document.getElementById('about-body');
-    ab.innerHTML = `<p class="reveal" style="color:var(--muted);line-height:1.9;font-size:1rem;margin-bottom:1rem">${C.person.bio}</p><p class="reveal" style="color:var(--muted);line-height:1.9;font-size:1rem">Fluent in English, Urdu, and Tamil. Currently based in Chennai, India and open to remote and hybrid opportunities worldwide.</p>`;
-
-    const ph = document.getElementById('philo-cards');
-    C.philosophy.forEach((p, i) => {
-      ph.innerHTML += `<div class="philo-card reveal" style="transition-delay:${i * 0.12}s"><div class="philo-icon">${p.icon}</div><div><div class="philo-title">${p.title}</div><div class="philo-desc">${p.desc}</div></div></div>`;
-    });
-
+    // ---- SKILLS ----
     const uxg = document.getElementById('ux-skills');
-    C.skills.ux.forEach((s, i) => { uxg.innerHTML += `<span class="skill-chip reveal" style="transition-delay:${i * 0.04}s">${s}</span>`; });
-
+    C.skills.ux.forEach(s => { uxg.innerHTML += `<span class="skill-chip reveal">${s}</span>`; });
     const tg = document.getElementById('tool-chips');
-    C.skills.tools.forEach((t, i) => { tg.innerHTML += `<span class="tool-chip reveal" style="transition-delay:${i * 0.07}s">${t}</span>`; });
+    C.skills.tools.forEach(t => { tg.innerHTML += `<span class="tool-chip reveal">${t}</span>`; });
 
+    // ---- PROCESS ----
     const pg = document.getElementById('process-grid');
     C.process.forEach((p, i) => {
-      pg.innerHTML += `<div class="process-card reveal" style="transition-delay:${i * 0.1}s"><div class="process-num">${p.num}</div><div class="process-label">${p.label}</div><div class="process-desc">${p.desc}</div></div>`;
+      pg.innerHTML +=
+        `<div class="process-card reveal" style="transition-delay:${i * 0.1}s"><div class="process-num">${p.num}</div><div class="process-label">${p.label}</div><div class="process-desc">${p.desc}</div></div>`;
     });
 
+    // ---- JOURNEY ----
     const tl = document.getElementById('timeline');
     C.journey.forEach((j, i) => {
       const el = document.createElement('div');
       el.className = 'journey-item';
       el.style.transitionDelay = i * 0.15 + 's';
-      el.innerHTML = `<div class="journey-dot"></div><div class="journey-year">${j.year}</div><div class="journey-title">${j.title}</div><div class="journey-body">${j.body}</div>`;
+      el.innerHTML =
+        `<div class="journey-dot"></div><div class="journey-year">${j.year}</div><div class="journey-title">${j.title}</div><div class="journey-body">${j.body}</div>`;
       tl.appendChild(el);
     });
 
+    // ---- EXPERIENCE ----
     const ec = document.getElementById('exp-container');
     C.experience.forEach(e => {
-      ec.innerHTML += `<div class="exp-card reveal"><div class="exp-company">${e.company}</div><div class="exp-role">${e.role}</div><div class="exp-period">${e.period}</div><ul class="exp-list">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul></div>`;
+      ec.innerHTML +=
+        `<div class="exp-card reveal"><div class="exp-company">${e.company}</div><div class="exp-role">${e.role}</div><div class="exp-period">${e.period}</div><ul class="exp-list">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul></div>`;
     });
 
+    // ---- EDUCATION ----
     const el = document.getElementById('edu-list');
     el.innerHTML = `<div class="skills-block-title reveal" style="margin-bottom:1.25rem">Education</div>`;
     C.education.forEach(e => {
-      el.innerHTML += `<div class="edu-item reveal"><div class="edu-degree">${e.degree}</div><div class="edu-school">${e.school}</div><div class="edu-period">${e.period}</div></div>`;
+      el.innerHTML +=
+        `<div class="edu-item reveal"><div class="edu-degree">${e.degree}</div><div class="edu-school">${e.school}</div><div class="edu-period">${e.period}</div></div>`;
     });
-
     const al = document.getElementById('achieve-list');
     C.achievements.forEach(a => { al.innerHTML += `<li class="reveal">${a}</li>`; });
 
+    // ---- CONTACT LINKS ----
     const cl = document.getElementById('contact-links');
     const cdata = [
-  {
-    icon: '<i class="fas fa-envelope"></i>',
-    text: 'Email Me',
-    href: 'https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com'
-  },
-  {
-    icon: '<i class="fas fa-phone"></i>',
-    text: C.person.phone,
-    href: 'tel:+917338933440'
-  },
-  {
-    icon: '<i class="fab fa-linkedin"></i>',
-    text: 'LinkedIn',
-    href: C.person.linkedin
-  },
-  {
-    icon: '<i class="fab fa-behance"></i>',
-    text: 'Behance',
-    href: C.person.behance
-  }
-];
+      { icon: '<i class="fas fa-envelope"></i>', text: 'Email Me', href: '#', id: 'emailChip' },
+      { icon: '<i class="fas fa-phone"></i>', text: '+91 7338933440', href: 'tel:+917338933440' },
+      { icon: '<i class="fab fa-linkedin"></i>', text: 'LinkedIn',
+      href: 'https://www.linkedin.com/in/mohamed-huzaifah-627aaa393/' },
+      { icon: '<i class="fab fa-behance"></i>', text: 'Behance',
+      href: 'https://www.behance.net/mohamedhuzaifah1' }
+    ];
     cdata.forEach(c => {
-      cl.innerHTML += `<a class="contact-chip" href="${c.href}" target="_blank">${c.icon} ${c.text}</a>`;
+      const a = document.createElement('a');
+      a.className = 'contact-chip';
+      if (c.id) a.id = c.id;
+      a.href = c.href;
+      a.target = '_blank';
+      a.innerHTML = `${c.icon} ${c.text}`;
+      if (c.id === 'emailChip') {
+        a.addEventListener('click', function(e) { e.preventDefault();
+          openForm(); });
+      }
+      cl.appendChild(a);
     });
 
-    // ── CAROUSEL ── (FIXED VERSION)
+    // ---- CAROUSEL ----
     let cIdx = 0;
     let autoPlay = localStorage.getItem('autoplay') !== 'false';
     let autoTimer = null;
@@ -1875,15 +1866,12 @@ Get In Touch
     function buildCarousel() {
       track.innerHTML = '';
       dotsC.innerHTML = '';
-
       C.projects.forEach((p, i) => {
         const card = document.createElement('div');
         card.className = 'project-card';
         card.dataset.index = i;
-
-        const coverStyle = p.cover ? `background-image:url(${p.cover});` : '';
         card.innerHTML = `
-            <div class="card-cover" style="${coverStyle}background-color:var(--card);">
+            <div class="card-cover" style="background-image:url(${p.cover});background-color:var(--card);">
               <div class="card-cover-glow"></div>
             </div>
             <div class="card-info">
@@ -1892,16 +1880,11 @@ Get In Touch
               <a class="card-cta" href="${p.link}" target="_blank">View Case Study →</a>
             </div>
           `;
-
         card.addEventListener('click', function(e) {
-          if (!isDragging) {
-            const idx = parseInt(this.dataset.index);
-            goToSlide(idx);
-          }
+          if (e.target.closest('.card-cta')) return;
+          openForm();
         });
-
         track.appendChild(card);
-
         const dot = document.createElement('div');
         dot.className = 'cdot';
         dot.dataset.index = i;
@@ -1911,7 +1894,6 @@ Get In Touch
         });
         dotsC.appendChild(dot);
       });
-
       goToSlide(0);
     }
 
@@ -1928,26 +1910,14 @@ Get In Touch
     function updateCarousel() {
       const cards = track.querySelectorAll('.project-card');
       const dots = dotsC.querySelectorAll('.cdot');
-
-      cards.forEach((card, i) => {
-        card.classList.toggle('active', i === cIdx);
-      });
-
-      dots.forEach((dot, i) => {
-        dot.classList.toggle('active', i === cIdx);
-      });
-
+      cards.forEach((card, i) => { card.classList.toggle('active', i === cIdx); });
+      dots.forEach((dot, i) => { dot.classList.toggle('active', i === cIdx); });
       const prevBtn = document.getElementById('prevBtn');
       const nextBtn = document.getElementById('nextBtn');
-
-      if (prevBtn) {
-        prevBtn.style.opacity = cIdx === 0 ? '0.35' : '1';
-        prevBtn.disabled = cIdx === 0;
-      }
-      if (nextBtn) {
-        nextBtn.style.opacity = cIdx === C.projects.length - 1 ? '0.35' : '1';
-        nextBtn.disabled = cIdx === C.projects.length - 1;
-      }
+      if (prevBtn) { prevBtn.style.opacity = cIdx === 0 ? '0.35' : '1';
+        prevBtn.disabled = cIdx === 0; }
+      if (nextBtn) { nextBtn.style.opacity = cIdx === C.projects.length - 1 ? '0.35' : '1';
+        nextBtn.disabled = cIdx === C.projects.length - 1; }
     }
 
     function scrollToCard() {
@@ -1994,12 +1964,11 @@ Get In Touch
       else clearTimeout(autoTimer);
     }
 
-    // DRAG / SWIPE
-    let isDragging = false;
-    let startX = 0;
-    let currentX = 0;
-    let isSwiping = false;
-
+    // drag/swipe
+    let isDragging = false,
+      startX = 0,
+      currentX = 0,
+      isSwiping = false;
     track.addEventListener('mousedown', (e) => {
       isDragging = true;
       isSwiping = false;
@@ -2008,7 +1977,6 @@ Get In Touch
       track.style.transition = 'none';
       e.preventDefault();
     });
-
     document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       isSwiping = true;
@@ -2023,37 +1991,29 @@ Get In Touch
       const basePosition = containerWidth / 2 - cardCenter;
       track.style.transform = `translateX(${basePosition + diff}px)`;
     });
-
     document.addEventListener('mouseup', () => {
       if (isDragging) {
         isDragging = false;
         if (isSwiping) {
           const diff = currentX - startX;
           const threshold = 50;
-          if (diff < -threshold && cIdx < C.projects.length - 1) {
-            slideCarousel(1);
-          } else if (diff > threshold && cIdx > 0) {
-            slideCarousel(-1);
-          } else {
-            scrollToCard();
-          }
+          if (diff < -threshold && cIdx < C.projects.length - 1) slideCarousel(1);
+          else if (diff > threshold && cIdx > 0) slideCarousel(-1);
+          else scrollToCard();
           isSwiping = false;
         }
       }
     });
-
-    // TOUCH
-    let touchStartX = 0;
-    let touchCurrentX = 0;
-    let isTouching = false;
-
+    // touch
+    let touchStartX = 0,
+      touchCurrentX = 0,
+      isTouching = false;
     track.addEventListener('touchstart', (e) => {
       isTouching = true;
       touchStartX = e.touches[0].clientX;
       touchCurrentX = touchStartX;
       track.style.transition = 'none';
     }, { passive: true });
-
     track.addEventListener('touchmove', (e) => {
       if (!isTouching) return;
       touchCurrentX = e.touches[0].clientX;
@@ -2067,70 +2027,47 @@ Get In Touch
       const basePosition = containerWidth / 2 - cardCenter;
       track.style.transform = `translateX(${basePosition + diff}px)`;
     }, { passive: true });
-
-    track.addEventListener('touchend', (e) => {
+    track.addEventListener('touchend', () => {
       if (isTouching) {
         isTouching = false;
         const diff = touchCurrentX - touchStartX;
         const threshold = 40;
-        if (diff < -threshold && cIdx < C.projects.length - 1) {
-          slideCarousel(1);
-        } else if (diff > threshold && cIdx > 0) {
-          slideCarousel(-1);
-        } else {
-          scrollToCard();
-        }
+        if (diff < -threshold && cIdx < C.projects.length - 1) slideCarousel(1);
+        else if (diff > threshold && cIdx > 0) slideCarousel(-1);
+        else scrollToCard();
       }
     }, { passive: true });
 
-    // KEYBOARD
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'ArrowLeft') {
-        e.preventDefault();
-        if (cIdx > 0) slideCarousel(-1);
-      }
-      if (e.key === 'ArrowRight') {
-        e.preventDefault();
-        if (cIdx < C.projects.length - 1) slideCarousel(1);
-      }
-    });
-
-    // RESIZE
-    let resizeTimeout;
-    window.addEventListener('resize', () => {
-      clearTimeout(resizeTimeout);
-      resizeTimeout = setTimeout(() => {
-        scrollToCard();
-      }, 100);
-    });
-
-    // BUTTONS
     document.getElementById('autoBtn').addEventListener('click', toggleAutoplay);
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      if (cIdx > 0) slideCarousel(-1);
-    });
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      if (cIdx < C.projects.length - 1) slideCarousel(1);
-    });
+    document.getElementById('prevBtn').addEventListener('click', () => { if (cIdx > 0) slideCarousel(-1); });
+    document.getElementById('nextBtn').addEventListener('click', () => { if (cIdx < C.projects.length - 1) slideCarousel(1); });
 
-    // BUILD
     buildCarousel();
-    const ccPill = document.getElementById('ccPill');
-    if (ccPill) ccPill.classList.toggle('off', !autoPlay);
+    if (pill) pill.classList.toggle('off', !autoPlay);
     if (autoPlay) startAutoplay();
 
-    // ── SCROLL REVEAL ──
+    // ---- SCROLL REVEAL ----
     const obs = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal,.journey-item').forEach(el => obs.observe(el));
 
-    function observe() {
-      document.querySelectorAll('.reveal,.journey-item').forEach(el => obs.observe(el));
-    }
-    observe();
-    setTimeout(observe, 100);
+    // ---- NAV ACTIVE ----
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-links a");
+    window.addEventListener("scroll", () => {
+      let current = "";
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop - 150;
+        if (window.scrollY >= sectionTop) current = section.getAttribute("id");
+      });
+      navLinks.forEach(link => {
+        link.classList.remove("active-nav");
+        if (link.getAttribute("href") === "#" + current) link.classList.add("active-nav");
+      });
+    });
 
-    // ── MAGNETIC BUTTONS ──
+    // ---- MAGNETIC ----
     document.querySelectorAll('.btn-primary,.btn-ghost,.nav-hire').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
@@ -2141,27 +2078,86 @@ Get In Touch
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
 
-    // ── ACTIVE NAV LINK ──
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-links a");
+       // ============================================================
+// ===== FORM HANDLER - Opens Gmail with popup =====
+// ============================================================
 
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        const sectionHeight = section.offsetHeight;
-        if (window.scrollY >= sectionTop) {
-          current = section.getAttribute("id");
-        }
-      });
-      navLinks.forEach(link => {
-        link.classList.remove("active-nav");
-        if (link.getAttribute("href") === "#" + current) {
-          link.classList.add("active-nav");
-        }
-      });
-    });
+const overlay = document.getElementById('formOverlay');
+const closeBtn = document.getElementById('closeFormBtn');
+const form = document.getElementById('contactForm');
+const successMsg = document.getElementById('formSuccess');
+const submitBtn = document.getElementById('formSubmitBtn');
+
+function openForm() {
+  overlay.classList.add('open');
+  successMsg.classList.remove('show');
+  submitBtn.style.display = 'block';
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+  form.reset();
+}
+
+function closeForm() {
+  overlay.classList.remove('open');
+}
+
+closeBtn.addEventListener('click', closeForm);
+overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
+
+document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault(); openForm(); });
+
+// Send email - Opens Gmail
+function sendEmail(e) {
+  e.preventDefault();
+
+  const name = document.getElementById('formName').value.trim();
+  const email = document.getElementById('formEmail').value.trim();
+  const message = document.getElementById('formMessage').value.trim();
+
+  if (!name || !email) {
+    alert('Please fill your name and email.');
+    return;
+  }
+
+  // Build Gmail link
+  const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\n` +
+    `Email: ${email}\n` +
+    `Message:\n${message || '(no message)'}\n\n` +
+    `--\nSent from HMF Portfolio`
+  );
+
+  // Show success message
+  submitBtn.style.display = 'none';
+  successMsg.classList.add('show');
+
+  // Open Gmail
+  window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`, '_blank');
+
+  // Reset after 4 seconds
+  setTimeout(() => {
+    closeForm();
+    successMsg.classList.remove('show');
+    submitBtn.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+  }, 4000);
+}
+
+// Click on project card opens form
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.project-card');
+  if (card && !e.target.closest('.card-cta')) {
+    openForm();
+  }
+});
+
+// "Email Me" contact chip
+document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault(); openForm(); });
   </script>
+
 </body>
 
 </html>
