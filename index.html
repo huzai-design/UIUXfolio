@@ -53,64 +53,66 @@
       background: var(--violet);
       border-radius: 2px;
     }
-   #cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99999;  /* ← CHANGE FROM 9999 TO 99999 */
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: var(--violet);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.1s ease, width 0.3s, height 0.3s, background 0.3s;
-  mix-blend-mode: screen;
-}
 
-#cursor-ring {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 99998;  /* ← CHANGE FROM 9998 TO 99998 */
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  border: 1.5px solid rgba(139, 92, 246, 0.5);
-  pointer-events: none;
-  transform: translate(-50%, -50%);
-  transition: transform 0.25s ease, width 0.3s, height 0.3s;
-}
+    /* ===== CURSOR ===== */
+    #cursor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99999;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--violet);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s, background 0.3s;
+      mix-blend-mode: screen;
+      will-change: transform;
+    }
+    #cursor-ring {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 99998;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(139, 92, 246, 0.5);
+      pointer-events: none;
+      transform: translate(-50%, -50%);
+      transition: width 0.3s, height 0.3s;
+      will-change: transform;
+    }
     a,
     button,
     .project-card {
       cursor: none;
     }
-    /* ===== NAVBAR BACKGROUND ===== */
-nav {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 100;
-  padding: 1.25rem 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  transition: background 0.4s, backdrop-filter 0.4s;
-  /* Add background even when not scrolled */
-   background: rgba(4, 6, 15, 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(139, 92, 246, 0.1);
-}
 
-nav.scrolled {
-  background: rgba(4, 6, 15, 0.9);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid rgba(139, 92, 246, 0.2);
-}
+    /* ===== NAVBAR ===== */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 1.25rem 3rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.4s, backdrop-filter 0.4s;
+      background: rgba(4, 6, 15, 0.7);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.1);
+    }
+    nav.scrolled {
+      background: rgba(4, 6, 15, 0.9);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(139, 92, 246, 0.2);
+    }
     .nav-logo {
       font-family: var(--font-head);
       font-size: 1.1rem;
@@ -177,6 +179,7 @@ nav.scrolled {
       background: var(--violet);
       border-color: var(--violet);
     }
+
     /* ===== PARTICLES ===== */
     #particles {
       position: fixed;
@@ -214,6 +217,7 @@ nav.scrolled {
       filter: blur(80px);
       pointer-events: none;
     }
+
     /* ===== HERO ===== */
     #hero {
       min-height: 100vh;
@@ -387,6 +391,7 @@ nav.scrolled {
       width: min(460px, 90vw);
       height: min(460px, 90vw);
       transform: translateX(-60px);
+      will-change: transform;
     }
     .photo-glow-ring {
       position: absolute;
@@ -481,6 +486,7 @@ nav.scrolled {
         transform: translate(0, -6px) scale(1.02);
       }
     }
+
     /* ===== TICKER ===== */
     #figma-bar {
       position: relative;
@@ -524,6 +530,7 @@ nav.scrolled {
     .ticker-item.hl {
       color: var(--violet);
     }
+
     /* ===== SECTIONS ===== */
     section {
       position: relative;
@@ -574,6 +581,7 @@ nav.scrolled {
       opacity: 1;
       transform: translateY(0);
     }
+
     /* ===== ABOUT ===== */
     #about {
       background: var(--navy);
@@ -677,7 +685,8 @@ nav.scrolled {
       color: var(--cyan);
       margin-bottom: 1.25rem;
     }
-    /* ===== WORK ===== */
+
+    /* ===== WORK & CAROUSEL ===== */
     #work {
       background: var(--void);
       padding: 7rem 0;
@@ -762,8 +771,10 @@ nav.scrolled {
     .carousel-track {
       display: flex;
       gap: 24px;
-      transition: transform .7s cubic-bezier(.22, 1, .36, 1);
+      transition: transform .5s cubic-bezier(.25, .46, .45, .94);
       will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     .carousel-track:active {
       cursor: grabbing;
@@ -780,6 +791,9 @@ nav.scrolled {
       cursor: none;
       user-select: none;
       -webkit-user-select: none;
+      will-change: transform, opacity;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
     .project-card.active {
       transform: scale(1.15);
@@ -870,6 +884,8 @@ nav.scrolled {
       width: 22px;
       background: var(--violet);
     }
+
+    /* ===== PROCESS ===== */
     .process-section {
       padding: 5rem 3rem 3rem;
       max-width: 1300px;
@@ -932,6 +948,7 @@ nav.scrolled {
       color: var(--muted);
       line-height: 1.7;
     }
+
     /* ===== JOURNEY ===== */
     #journey {
       background: var(--navy);
@@ -1050,6 +1067,7 @@ nav.scrolled {
       color: var(--cyan);
       flex-shrink: 0;
     }
+
     /* ===== EDUCATION ===== */
     #edu {
       background: var(--void);
@@ -1101,6 +1119,7 @@ nav.scrolled {
       font-size: 0.7rem;
       margin-top: 0.25rem;
     }
+
     /* ===== CONTACT ===== */
     #contact {
       background: var(--navy);
@@ -1185,18 +1204,19 @@ nav.scrolled {
         opacity: 0;
       }
     }
+
     /* ===== FORM MODAL ===== */
-   .form-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(4, 6, 15, 0.8);
-  backdrop-filter: blur(8px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;  /* ← LOWER Z-INDEX SO CURSOR STAYS ABOVE */
-  padding: 1.5rem;
-}
+    .form-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(4, 6, 15, 0.8);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 999;
+      padding: 1.5rem;
+    }
     .form-overlay.open {
       display: flex;
     }
@@ -1595,7 +1615,7 @@ nav.scrolled {
     <span>UX/UI Designer · Built with passion</span>
   </footer>
 
-  <!-- ===== FORM MODAL (mailto with form data) ===== -->
+  <!-- ===== FORM MODAL ===== -->
   <div class="form-overlay" id="formOverlay">
     <div class="form-card">
       <button class="close-btn" id="closeFormBtn">&times;</button>
@@ -1616,9 +1636,9 @@ nav.scrolled {
         </div>
         <button type="submit" class="form-submit" id="formSubmitBtn"><i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message</button>
         <div class="form-success" id="formSuccess">
-  <i class="fas fa-check-circle"></i>
-  <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
-</div>
+          <i class="fas fa-check-circle"></i>
+          <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
+        </div>
       </form>
     </div>
   </div>
@@ -1709,45 +1729,60 @@ nav.scrolled {
       ]
     };
 
-    // ---- CURSOR ----
+    // ===== OPTIMIZED CURSOR =====
     const cur = document.getElementById('cursor');
     const curR = document.getElementById('cursor-ring');
-    let mx = 0,
-      my = 0,
-      rx = 0,
-      ry = 0;
-    document.addEventListener('mousemove', e => { mx = e.clientX;
-      my = e.clientY; });
+    let mx = window.innerWidth / 2,
+      my = window.innerHeight / 2;
+    let targetX = mx,
+      targetY = my;
 
-    function animCursor() {
+    document.addEventListener('mousemove', (e) => {
+      mx = e.clientX;
+      my = e.clientY;
+    }, { passive: true });
+
+    let animId = null;
+
+    function animateCursor() {
+      targetX += (mx - targetX) * 0.2;
+      targetY += (my - targetY) * 0.2;
+
       cur.style.left = mx + 'px';
       cur.style.top = my + 'px';
-      rx += (mx - rx) * 0.12;
-      ry += (my - ry) * 0.12;
-      curR.style.left = rx + 'px';
-      curR.style.top = ry + 'px';
-      requestAnimationFrame(animCursor);
+      curR.style.left = targetX + 'px';
+      curR.style.top = targetY + 'px';
+
+      animId = requestAnimationFrame(animateCursor);
     }
-    animCursor();
+    animateCursor();
 
     document.querySelectorAll('a,button,.project-card,.skill-chip,.tool-chip,input,textarea,.form-submit,.close-btn,.form-card').forEach(el => {
-  el.addEventListener('mouseenter', () => {
-    cur.style.width = '20px';
-    cur.style.height = '20px';
-    cur.style.background = 'rgba(139,92,246,0.8)';
-    curR.style.width = '60px';
-    curR.style.height = '60px';
-  });
-  el.addEventListener('mouseleave', () => {
-    cur.style.width = '12px';
-    cur.style.height = '12px';
-    cur.style.background = 'var(--violet)';
-    curR.style.width = '36px';
-    curR.style.height = '36px';
-  });
-});
+      el.addEventListener('mouseenter', () => {
+        cur.style.width = '20px';
+        cur.style.height = '20px';
+        cur.style.background = 'rgba(139,92,246,0.8)';
+        curR.style.width = '60px';
+        curR.style.height = '60px';
+      });
+      el.addEventListener('mouseleave', () => {
+        cur.style.width = '12px';
+        cur.style.height = '12px';
+        cur.style.background = 'var(--violet)';
+        curR.style.width = '36px';
+        curR.style.height = '36px';
+      });
+    });
 
-    // ---- PARTICLES ----
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        cancelAnimationFrame(animId);
+      } else {
+        animateCursor();
+      }
+    });
+
+    // ===== PARTICLES =====
     const pc = document.getElementById('particles');
     for (let i = 0; i < 40; i++) {
       const p = document.createElement('div');
@@ -1758,7 +1793,7 @@ nav.scrolled {
       pc.appendChild(p);
     }
 
-    // ---- BADGES ----
+    // ===== BADGES =====
     const badges = ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems",
       "Information Architecture", "Interaction Design", "Usability Testing", "Design Thinking"
     ];
@@ -1780,7 +1815,7 @@ nav.scrolled {
       orbit.appendChild(el);
     });
 
-    // ---- TICKER ----
+    // ===== TICKER =====
     const tickerItems = ["200+ Screens Designed", "·", "UX/UI Designer", "·", "UX Research", "·",
       "Design Thinking Process", "·", "Userflows", "·", "Information Architecture", "·", "Interaction Design", "·",
       "Wireframing", "·", "Prototyping", "·", "·", "A/B Testing", "·", "Usability Testing"
@@ -1795,20 +1830,20 @@ nav.scrolled {
       tin.appendChild(div);
     }
 
-    // ---- SKILLS ----
+    // ===== SKILLS =====
     const uxg = document.getElementById('ux-skills');
     C.skills.ux.forEach(s => { uxg.innerHTML += `<span class="skill-chip reveal">${s}</span>`; });
     const tg = document.getElementById('tool-chips');
     C.skills.tools.forEach(t => { tg.innerHTML += `<span class="tool-chip reveal">${t}</span>`; });
 
-    // ---- PROCESS ----
+    // ===== PROCESS =====
     const pg = document.getElementById('process-grid');
     C.process.forEach((p, i) => {
       pg.innerHTML +=
         `<div class="process-card reveal" style="transition-delay:${i * 0.1}s"><div class="process-num">${p.num}</div><div class="process-label">${p.label}</div><div class="process-desc">${p.desc}</div></div>`;
     });
 
-    // ---- JOURNEY ----
+    // ===== JOURNEY =====
     const tl = document.getElementById('timeline');
     C.journey.forEach((j, i) => {
       const el = document.createElement('div');
@@ -1819,14 +1854,14 @@ nav.scrolled {
       tl.appendChild(el);
     });
 
-    // ---- EXPERIENCE ----
+    // ===== EXPERIENCE =====
     const ec = document.getElementById('exp-container');
     C.experience.forEach(e => {
       ec.innerHTML +=
         `<div class="exp-card reveal"><div class="exp-company">${e.company}</div><div class="exp-role">${e.role}</div><div class="exp-period">${e.period}</div><ul class="exp-list">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul></div>`;
     });
 
-    // ---- EDUCATION ----
+    // ===== EDUCATION =====
     const el = document.getElementById('edu-list');
     el.innerHTML = `<div class="skills-block-title reveal" style="margin-bottom:1.25rem">Education</div>`;
     C.education.forEach(e => {
@@ -1836,7 +1871,7 @@ nav.scrolled {
     const al = document.getElementById('achieve-list');
     C.achievements.forEach(a => { al.innerHTML += `<li class="reveal">${a}</li>`; });
 
-    // ---- CONTACT LINKS ----
+    // ===== CONTACT LINKS =====
     const cl = document.getElementById('contact-links');
     const cdata = [
       { icon: '<i class="fas fa-envelope"></i>', text: 'Email Me', href: '#', id: 'emailChip' },
@@ -1860,7 +1895,7 @@ nav.scrolled {
       cl.appendChild(a);
     });
 
-    // ---- CAROUSEL ----
+    // ===== OPTIMIZED CAROUSEL =====
     let cIdx = 0;
     let autoPlay = localStorage.getItem('autoplay') !== 'false';
     let autoTimer = null;
@@ -1901,7 +1936,7 @@ nav.scrolled {
         });
         dotsC.appendChild(dot);
       });
-      goToSlide(0);
+      setTimeout(() => goToSlide(0), 50);
     }
 
     function goToSlide(index) {
@@ -1935,7 +1970,7 @@ nav.scrolled {
       const card = cards[cIdx];
       const cardCenter = card.offsetLeft + card.offsetWidth / 2;
       const scrollPosition = containerWidth / 2 - cardCenter;
-      track.style.transition = 'transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      track.style.transition = 'transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
       track.style.transform = `translateX(${scrollPosition}px)`;
     }
 
@@ -1971,11 +2006,12 @@ nav.scrolled {
       else clearTimeout(autoTimer);
     }
 
-    // drag/swipe
+    // Drag/Swipe
     let isDragging = false,
       startX = 0,
       currentX = 0,
       isSwiping = false;
+
     track.addEventListener('mousedown', (e) => {
       isDragging = true;
       isSwiping = false;
@@ -1984,6 +2020,7 @@ nav.scrolled {
       track.style.transition = 'none';
       e.preventDefault();
     });
+
     document.addEventListener('mousemove', (e) => {
       if (!isDragging) return;
       isSwiping = true;
@@ -1997,30 +2034,38 @@ nav.scrolled {
       const cardCenter = card.offsetLeft + card.offsetWidth / 2;
       const basePosition = containerWidth / 2 - cardCenter;
       track.style.transform = `translateX(${basePosition + diff}px)`;
-    });
+    }, { passive: true });
+
     document.addEventListener('mouseup', () => {
       if (isDragging) {
         isDragging = false;
         if (isSwiping) {
           const diff = currentX - startX;
           const threshold = 50;
-          if (diff < -threshold && cIdx < C.projects.length - 1) slideCarousel(1);
-          else if (diff > threshold && cIdx > 0) slideCarousel(-1);
-          else scrollToCard();
+          if (diff < -threshold && cIdx < C.projects.length - 1) {
+            slideCarousel(1);
+          } else if (diff > threshold && cIdx > 0) {
+            slideCarousel(-1);
+          } else {
+            scrollToCard();
+          }
           isSwiping = false;
         }
       }
     });
-    // touch
+
+    // Touch
     let touchStartX = 0,
       touchCurrentX = 0,
       isTouching = false;
+
     track.addEventListener('touchstart', (e) => {
       isTouching = true;
       touchStartX = e.touches[0].clientX;
       touchCurrentX = touchStartX;
       track.style.transition = 'none';
     }, { passive: true });
+
     track.addEventListener('touchmove', (e) => {
       if (!isTouching) return;
       touchCurrentX = e.touches[0].clientX;
@@ -2034,17 +2079,23 @@ nav.scrolled {
       const basePosition = containerWidth / 2 - cardCenter;
       track.style.transform = `translateX(${basePosition + diff}px)`;
     }, { passive: true });
-    track.addEventListener('touchend', () => {
+
+    track.addEventListener('touchend', (e) => {
       if (isTouching) {
         isTouching = false;
         const diff = touchCurrentX - touchStartX;
         const threshold = 40;
-        if (diff < -threshold && cIdx < C.projects.length - 1) slideCarousel(1);
-        else if (diff > threshold && cIdx > 0) slideCarousel(-1);
-        else scrollToCard();
+        if (diff < -threshold && cIdx < C.projects.length - 1) {
+          slideCarousel(1);
+        } else if (diff > threshold && cIdx > 0) {
+          slideCarousel(-1);
+        } else {
+          scrollToCard();
+        }
       }
     }, { passive: true });
 
+    // Buttons
     document.getElementById('autoBtn').addEventListener('click', toggleAutoplay);
     document.getElementById('prevBtn').addEventListener('click', () => { if (cIdx > 0) slideCarousel(-1); });
     document.getElementById('nextBtn').addEventListener('click', () => { if (cIdx < C.projects.length - 1) slideCarousel(1); });
@@ -2053,13 +2104,13 @@ nav.scrolled {
     if (pill) pill.classList.toggle('off', !autoPlay);
     if (autoPlay) startAutoplay();
 
-    // ---- SCROLL REVEAL ----
+    // ===== SCROLL REVEAL =====
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal,.journey-item').forEach(el => obs.observe(el));
 
-    // ---- NAV ACTIVE ----
+    // ===== NAV ACTIVE =====
     const sections = document.querySelectorAll("section");
     const navLinks = document.querySelectorAll(".nav-links a");
     window.addEventListener("scroll", () => {
@@ -2074,7 +2125,7 @@ nav.scrolled {
       });
     });
 
-    // ---- MAGNETIC ----
+    // ===== MAGNETIC =====
     document.querySelectorAll('.btn-primary,.btn-ghost,.nav-hire').forEach(btn => {
       btn.addEventListener('mousemove', e => {
         const r = btn.getBoundingClientRect();
@@ -2085,84 +2136,76 @@ nav.scrolled {
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
 
-       // ============================================================
-// ===== FORM HANDLER - Opens Gmail with popup =====
-// ============================================================
+    // ===== FORM HANDLER =====
+    const overlay = document.getElementById('formOverlay');
+    const closeBtn = document.getElementById('closeFormBtn');
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('formSuccess');
+    const submitBtn = document.getElementById('formSubmitBtn');
 
-const overlay = document.getElementById('formOverlay');
-const closeBtn = document.getElementById('closeFormBtn');
-const form = document.getElementById('contactForm');
-const successMsg = document.getElementById('formSuccess');
-const submitBtn = document.getElementById('formSubmitBtn');
+    function openForm() {
+      overlay.classList.add('open');
+      successMsg.classList.remove('show');
+      submitBtn.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+      form.reset();
+    }
 
-function openForm() {
-  overlay.classList.add('open');
-  successMsg.classList.remove('show');
-  submitBtn.style.display = 'block';
-  submitBtn.disabled = false;
-  submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-  form.reset();
-}
+    function closeForm() {
+      overlay.classList.remove('open');
+    }
 
-function closeForm() {
-  overlay.classList.remove('open');
-}
+    closeBtn.addEventListener('click', closeForm);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
 
-closeBtn.addEventListener('click', closeForm);
-overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
+    document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault();
+      openForm(); });
 
-document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault(); openForm(); });
+    function sendEmail(e) {
+      e.preventDefault();
 
-// Send email - Opens Gmail
-function sendEmail(e) {
-  e.preventDefault();
+      const name = document.getElementById('formName').value.trim();
+      const email = document.getElementById('formEmail').value.trim();
+      const message = document.getElementById('formMessage').value.trim();
 
-  const name = document.getElementById('formName').value.trim();
-  const email = document.getElementById('formEmail').value.trim();
-  const message = document.getElementById('formMessage').value.trim();
+      if (!name || !email) {
+        alert('Please fill your name and email.');
+        return;
+      }
 
-  if (!name || !email) {
-    alert('Please fill your name and email.');
-    return;
-  }
+      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Message:\n${message || '(no message)'}\n\n` +
+        `--\nSent from HMF Portfolio`
+      );
 
-  // Build Gmail link
-  const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-  const body = encodeURIComponent(
-    `Name: ${name}\n` +
-    `Email: ${email}\n` +
-    `Message:\n${message || '(no message)'}\n\n` +
-    `--\nSent from HMF Portfolio`
-  );
+      submitBtn.style.display = 'none';
+      successMsg.classList.add('show');
 
-  // Show success message
-  submitBtn.style.display = 'none';
-  successMsg.classList.add('show');
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`, '_blank');
 
-  // Open Gmail
-  window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`, '_blank');
+      setTimeout(() => {
+        closeForm();
+        successMsg.classList.remove('show');
+        submitBtn.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+      }, 4000);
+    }
 
-  // Reset after 4 seconds
-  setTimeout(() => {
-    closeForm();
-    successMsg.classList.remove('show');
-    submitBtn.style.display = 'block';
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-  }, 4000);
-}
+    document.addEventListener('click', function(e) {
+      const card = e.target.closest('.project-card');
+      if (card && !e.target.closest('.card-cta')) {
+        openForm();
+      }
+    });
 
-// Click on project card opens form
-document.addEventListener('click', function(e) {
-  const card = e.target.closest('.project-card');
-  if (card && !e.target.closest('.card-cta')) {
-    openForm();
-  }
-});
-
-// "Email Me" contact chip
-document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault(); openForm(); });
+    document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault();
+      openForm(); });
   </script>
 
 </body>
