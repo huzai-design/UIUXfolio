@@ -1342,7 +1342,9 @@
       display: block;
     }
 
-    /* ===== RESPONSIVE ===== */
+    /* ============================================================
+       RESPONSIVE - ONLY THIS SECTION CHANGES
+       ============================================================ */
     @media (hover: none) and (pointer: coarse) {
       #cursor,
       #cursor-ring {
@@ -1357,87 +1359,474 @@
         cursor: pointer !important;
       }
     }
-    @media (max-width: 768px) {
-      .carousel-track {
-        display: flex;
-        gap: 40px;
-      }
-      .project-card {
-        width: calc(100vw - 32px);
-        max-width: 340px;
-      }
-      #about .about-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      .process-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-      .edu-achieve-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-      }
-      nav {
-        padding: 1rem;
-      }
-      .nav-links {
-        gap: 1rem;
-      }
-      .nav-links a {
-        font-size: 0.6rem;
-        letter-spacing: 0.05em;
-      }
-      .nav-hire {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.6rem;
-      }
-      #hero {
-        padding: 6rem 1.5rem 3rem;
-      }
+
+    /* ---- TABLETS ---- */
+    @media (max-width: 1024px) {
       .hero-inner {
-        grid-template-columns: 1fr;
         gap: 2rem;
-      }
-      .section-inner {
-        padding: 4rem 1.5rem;
-      }
-      .hero-stats {
-        gap: 1.5rem;
       }
       .photo-orbit {
-        width: min(300px, 80vw);
-        height: min(300px, 80vw);
+        width: min(360px, 70vw);
+        height: min(360px, 70vw);
+        transform: translateX(-20px);
       }
-      .process-section {
-        padding: 3rem 1.5rem;
+      .hero-h1 {
+        font-size: clamp(2.5rem, 4.5vw, 4rem);
       }
-      .form-card {
-        padding: 2rem 1.5rem;
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .section-inner {
+        padding: 5rem 2rem;
       }
     }
-    @media (max-width: 480px) {
-      .process-grid {
-        grid-template-columns: 1fr;
+
+    /* ---- MOBILE (FULL WIDTH BUTTONS) ---- */
+    @media (max-width: 768px) {
+      /* NAV */
+      nav {
+        padding: 0.7rem 1rem;
+        flex-wrap: wrap;
+        gap: 0.3rem;
       }
-      .hero-actions {
-        flex-direction: column;
-        align-items: stretch;
-      }
-      .btn-primary,
-      .btn-ghost {
-        justify-content: center;
-      }
-      #work .section-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-      }
-      .nav-links a {
-        font-size: 0.5rem;
-        letter-spacing: 0.03em;
+      .nav-logo {
+        font-size: 0.8rem;
       }
       .nav-links {
         gap: 0.5rem;
+        order: 3;
+        width: 100%;
+        justify-content: center;
+        padding-top: 0.3rem;
+        border-top: 1px solid rgba(139, 92, 246, 0.08);
+      }
+      .nav-links a {
+        font-size: 0.5rem;
+        letter-spacing: 0.04em;
+      }
+      .nav-hire {
+        padding: 0.25rem 0.6rem;
+        font-size: 0.45rem;
+      }
+
+      /* HERO - Stacked */
+      #hero {
+        padding: 5.5rem 1rem 2rem;
+        min-height: auto;
+      }
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        text-align: center;
+      }
+      .hero-left {
+        order: 2;
+        gap: 0.8rem;
+        align-items: center;
+      }
+      .hero-right {
+        order: 1;
+      }
+      .hero-label {
+        font-size: 0.55rem;
+        justify-content: center;
+      }
+      .hero-h1 {
+        font-size: 2rem;
+        text-align: center;
+      }
+      .hero-sub {
+        font-size: 0.85rem;
+        max-width: 100%;
+        text-align: center;
+      }
+      .hero-stats {
+        gap: 0.8rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .hero-stat-n {
+        font-size: 1.2rem;
+      }
+      .hero-stat-l {
+        font-size: 0.5rem;
+      }
+      
+      /* ===== FULL WIDTH BUTTONS ===== */
+      .hero-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        width: 100%;
+        max-width: 400px;
+      }
+      .btn-primary,
+      .btn-ghost {
+        width: 100%;
+        justify-content: center;
+        padding: 0.7rem 1.2rem;
+        font-size: 0.7rem;
+        border-radius: 50px;
+      }
+
+      /* PHOTO - Centered */
+      .photo-orbit {
+        width: min(200px, 55vw);
+        height: min(200px, 55vw);
+        transform: translateX(0);
+        margin: 0 auto;
+      }
+      .photo-glow-ring {
+        inset: -15px;
+        filter: blur(12px);
+      }
+      .photo-glow-ring-2 {
+        inset: -8px;
+      }
+      .photo-glow-ring-3 {
+        inset: -20px;
+      }
+      .skill-badge {
+        font-size: 0.4rem;
+        padding: 0.12rem 0.4rem;
+      }
+      .skill-badge .bd {
+        width: 3px;
+        height: 3px;
+      }
+
+      /* TICKER */
+      #figma-bar {
+        padding: 1.2rem 0.8rem;
+      }
+      .ticker-item {
+        font-size: 0.6rem;
+        gap: 0.2rem;
+      }
+      .figma-ticker-inner {
+        gap: 1rem;
+      }
+
+      /* SECTIONS */
+      .section-inner {
+        padding: 3rem 1rem;
+      }
+      .section-h2 {
+        font-size: 1.6rem;
+      }
+      .section-sub {
+        font-size: 0.85rem;
+      }
+
+      /* ABOUT */
+      #about .about-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .about-text p {
+        font-size: 0.85rem;
+        text-align: center;
+      }
+      .philo-card {
+        padding: 1rem 1.2rem;
+        flex-direction: column;
+        text-align: center;
+      }
+      .philo-icon {
+        font-size: 1.3rem;
+      }
+      .philo-title {
+        font-size: 0.85rem;
+      }
+      .philo-desc {
+        font-size: 0.75rem;
+      }
+      .skill-chip {
+        padding: 0.25rem 0.7rem;
+        font-size: 0.6rem;
+      }
+      .tool-chip {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .skills-block-title {
+        font-size: 0.65rem;
+        text-align: center;
+      }
+
+      /* WORK */
+      #work {
+        padding: 2.5rem 0;
+      }
+      #work .section-header {
+        padding: 0 1rem;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.8rem;
+      }
+      .carousel-controls {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .cc-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.8rem;
+      }
+      .carousel-track {
+        gap: 12px;
+      }
+      .project-card {
+        width: calc(100vw - 2rem);
+        max-width: 280px;
+        border-radius: 16px;
+      }
+      .project-card.active {
+        transform: scale(1.04);
+      }
+      .project-card:not(.active) {
+        transform: scale(0.88);
+      }
+      .card-cover {
+        height: 140px;
+      }
+      .card-info {
+        padding: 0.8rem;
+      }
+      .card-title {
+        font-size: 0.95rem;
+      }
+      .card-desc {
+        font-size: 0.65rem;
+      }
+      .card-cta {
+        font-size: 0.55rem;
+        padding: 0.3rem 0.8rem;
+      }
+      .carousel-dots {
+        margin-top: 1rem;
+      }
+      .cdot {
+        width: 5px;
+        height: 5px;
+      }
+      .cdot.active {
+        width: 16px;
+      }
+
+      /* PROCESS */
+      .process-section {
+        padding: 2.5rem 1rem 1rem;
+      }
+      .process-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 0.6rem;
+        margin-top: 1.5rem;
+      }
+      .process-card {
+        padding: 1rem;
+        text-align: center;
+        border-radius: 12px;
+      }
+      .process-num {
+        font-size: 1.6rem;
+      }
+      .process-label {
+        font-size: 0.8rem;
+      }
+      .process-desc {
+        font-size: 0.65rem;
+      }
+
+      /* JOURNEY */
+      .journey-timeline {
+        padding-left: 1.8rem;
+        margin-top: 1.5rem;
+      }
+      .journey-item {
+        padding-bottom: 1.8rem;
+      }
+      .journey-dot {
+        left: -2.2rem;
+        width: 10px;
+        height: 10px;
+      }
+      .journey-year {
+        font-size: 0.55rem;
+      }
+      .journey-title {
+        font-size: 0.9rem;
+      }
+      .journey-body {
+        font-size: 0.75rem;
+      }
+      .experience-section {
+        margin-top: 2rem;
+        padding-top: 1.5rem;
+      }
+      .exp-card {
+        padding: 1rem;
+        border-radius: 12px;
+      }
+      .exp-role {
+        font-size: 0.95rem;
+      }
+      .exp-list li {
+        font-size: 0.7rem;
+      }
+
+      /* EDUCATION */
+      .edu-achieve-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-top: 1.5rem;
+      }
+      .edu-degree {
+        font-size: 0.85rem;
+      }
+      .edu-school {
+        font-size: 0.7rem;
+      }
+      .edu-period {
+        font-size: 0.65rem;
+      }
+      .achieve-list li {
+        font-size: 0.75rem;
+      }
+
+      /* CONTACT */
+      .contact-h {
+        font-size: 2rem;
+      }
+      .contact-sub {
+        font-size: 0.8rem;
+        margin-bottom: 1.5rem;
+      }
+      .contact-links {
+        gap: 0.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .contact-chip {
+        padding: 0.4rem 0.9rem;
+        font-size: 0.65rem;
+        border-radius: 50px;
+      }
+
+      /* FORM */
+      .form-card {
+        padding: 1.5rem 1.2rem;
+        border-radius: 16px;
+      }
+      .form-card h3 {
+        font-size: 1.3rem;
+      }
+      .form-card p {
+        font-size: 0.75rem;
+      }
+      .form-group input,
+      .form-group textarea {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.8rem;
+      }
+      .form-submit {
+        padding: 0.6rem;
+        font-size: 0.75rem;
+      }
+
+      /* FOOTER */
+      footer {
+        padding: 1rem 1.2rem;
+        font-size: 0.55rem;
+        flex-direction: column;
+        text-align: center;
+        gap: 0.2rem;
+      }
+    }
+
+    /* ---- SMALL PHONES ---- */
+    @media (max-width: 480px) {
+      .nav-links a {
+        font-size: 0.4rem;
+        letter-spacing: 0.02em;
+      }
+      .nav-links {
+        gap: 0.3rem;
+      }
+      .nav-hire {
+        padding: 0.2rem 0.4rem;
+        font-size: 0.4rem;
+      }
+      .nav-logo {
+        font-size: 0.7rem;
+      }
+      
+      .hero-h1 {
+        font-size: 1.6rem;
+      }
+      .hero-stats {
+        gap: 0.6rem;
+      }
+      .hero-stat-n {
+        font-size: 1rem;
+      }
+      .hero-stat-l {
+        font-size: 0.45rem;
+      }
+      .btn-primary,
+      .btn-ghost {
+        padding: 0.5rem 1rem;
+        font-size: 0.6rem;
+      }
+
+      .photo-orbit {
+        width: min(160px, 45vw);
+        height: min(160px, 45vw);
+      }
+      .skill-badge {
+        font-size: 0.3rem;
+        padding: 0.08rem 0.25rem;
+      }
+      .skill-badge .bd {
+        width: 2px;
+        height: 2px;
+      }
+
+      .project-card {
+        max-width: 240px;
+      }
+      .project-card.active {
+        transform: scale(1);
+      }
+      .project-card:not(.active) {
+        transform: scale(0.82);
+      }
+      .card-cover {
+        height: 110px;
+      }
+
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+      .process-card {
+        padding: 0.8rem;
+      }
+      .process-num {
+        font-size: 1.4rem;
+      }
+
+      .section-h2 {
+        font-size: 1.3rem;
+      }
+      .section-inner {
+        padding: 2rem 0.8rem;
+      }
+      .contact-links {
+        gap: 0.4rem;
+      }
+      .contact-chip {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.55rem;
       }
     }
   </style>
@@ -1895,7 +2284,7 @@
       cl.appendChild(a);
     });
 
-    // ===== OPTIMIZED CAROUSEL =====
+    // ===== CAROUSEL =====
     let cIdx = 0;
     let autoPlay = localStorage.getItem('autoplay') !== 'false';
     let autoTimer = null;
