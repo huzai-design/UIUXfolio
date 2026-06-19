@@ -1986,25 +1986,27 @@
       <button class="close-btn" id="closeFormBtn">&times;</button>
       <h3>Let's talk</h3>
       <p>Fill the form and I'll get back to you within 24h.</p>
-      <form id="contactForm" onsubmit="sendEmail(event)">
-        <div class="form-group">
-          <label>Your name</label>
-          <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
-        </div>
-        <div class="form-group">
-          <label>Your email</label>
-          <input type="email" name="email" id="formEmail" placeholder="alex@studio.com" required>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea name="message" id="formMessage" placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button type="submit" class="form-submit" id="formSubmitBtn"><i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message</button>
-        <div class="form-success" id="formSuccess">
-          <i class="fas fa-check-circle"></i>
-          <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
-        </div>
-      </form>
+     <form id="contactForm" onsubmit="sendEmail(event)">
+  <div class="form-group">
+    <label>Your name</label>
+    <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
+  </div>
+  <div class="form-group">
+    <label>Your email</label>
+    <input type="email" name="email" id="formEmail" placeholder="alex@studio.com" required>
+  </div>
+  <div class="form-group">
+    <label>Message</label>
+    <textarea name="message" id="formMessage" placeholder="Tell me about your project..."></textarea>
+  </div>
+  <button type="submit" class="form-submit" id="formSubmitBtn">
+    <i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message
+  </button>
+  <div class="form-success" id="formSuccess">
+    <i class="fas fa-check-circle"></i>
+    <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
+  </div>
+</form>
     </div>
   </div>
 
@@ -2501,34 +2503,34 @@
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
 
-    // ===== FORM HANDLER =====
-    const overlay = document.getElementById('formOverlay');
-    const closeBtn = document.getElementById('closeFormBtn');
-    const form = document.getElementById('contactForm');
-    const successMsg = document.getElementById('formSuccess');
-    const submitBtn = document.getElementById('formSubmitBtn');
+   // ===== FORM HANDLER =====
+const overlay = document.getElementById('formOverlay');
+const closeBtn = document.getElementById('closeFormBtn');
+const form = document.getElementById('contactForm');
+const successMsg = document.getElementById('formSuccess');
+const submitBtn = document.getElementById('formSubmitBtn');
 
-    function openForm() {
-      overlay.classList.add('open');
-      successMsg.classList.remove('show');
-      submitBtn.style.display = 'block';
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-      form.reset();
-    }
+function openForm() {
+  overlay.classList.add('open');
+  successMsg.classList.remove('show');
+  submitBtn.style.display = 'block';
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+  form.reset();
+}
 
-    function closeForm() {
-      overlay.classList.remove('open');
-    }
+function closeForm() {
+  overlay.classList.remove('open');
+}
 
-    closeBtn.addEventListener('click', closeForm);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
+closeBtn.addEventListener('click', closeForm);
+overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
 
-    document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault();
-      openForm(); });
+document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault(); openForm(); });
 
-    function sendEmail(e) {
+// ===== SEND EMAIL FUNCTION - FIXED =====
+function sendEmail(e) {
   e.preventDefault();
 
   const name = document.getElementById('formName').value.trim();
@@ -2550,27 +2552,14 @@
 
   const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`;
 
+  // Show success message
   submitBtn.style.display = 'none';
   successMsg.classList.add('show');
 
-  // For mobile - try to open Gmail app first, fallback to web
-  const userAgent = navigator.userAgent.toLowerCase();
-  const isMobile = /android|webos|iphone|ipad|ipod|blackberry|windows phone/.test(userAgent);
+  // Open Gmail - works on all devices
+  window.location.href = gmailLink;
 
-  if (isMobile) {
-    // Try Gmail app first (for Android)
-    const gmailAppLink = `googlegmail://co?to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`;
-    window.location.href = gmailAppLink;
-    
-    // Fallback: if Gmail app doesn't open, open web version
-    setTimeout(function() {
-      window.location.href = gmailLink;
-    }, 500);
-  } else {
-    // Desktop - open in new tab
-    window.open(gmailLink, '_blank');
-  }
-
+  // Close form after 4 seconds
   setTimeout(() => {
     closeForm();
     successMsg.classList.remove('show');
@@ -2579,15 +2568,17 @@
     submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
   }, 4000);
 }
-    document.addEventListener('click', function(e) {
-      const card = e.target.closest('.project-card');
-      if (card && !e.target.closest('.card-cta')) {
-        openForm();
-      }
-    });
 
-    document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault();
-      openForm(); });
+// Click on project card opens form
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.project-card');
+  if (card && !e.target.closest('.card-cta')) {
+    openForm();
+  }
+});
+
+// "Email Me" contact chip
+document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault(); openForm(); });
   </script>
 
 </body>
