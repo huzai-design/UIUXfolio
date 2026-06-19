@@ -2529,39 +2529,56 @@
       openForm(); });
 
     function sendEmail(e) {
-      e.preventDefault();
+  e.preventDefault();
 
-      const name = document.getElementById('formName').value.trim();
-      const email = document.getElementById('formEmail').value.trim();
-      const message = document.getElementById('formMessage').value.trim();
+  const name = document.getElementById('formName').value.trim();
+  const email = document.getElementById('formEmail').value.trim();
+  const message = document.getElementById('formMessage').value.trim();
 
-      if (!name || !email) {
-        alert('Please fill your name and email.');
-        return;
-      }
+  if (!name || !email) {
+    alert('Please fill your name and email.');
+    return;
+  }
 
-      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Message:\n${message || '(no message)'}\n\n` +
-        `--\nSent from HMF Portfolio`
-      );
+  const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\n` +
+    `Email: ${email}\n` +
+    `Message:\n${message || '(no message)'}\n\n` +
+    `--\nSent from HMF Portfolio`
+  );
 
-      submitBtn.style.display = 'none';
-      successMsg.classList.add('show');
+  const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`;
 
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`, '_blank');
+  submitBtn.style.display = 'none';
+  successMsg.classList.add('show');
 
-      setTimeout(() => {
-        closeForm();
-        successMsg.classList.remove('show');
-        submitBtn.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-      }, 4000);
-    }
+  // For mobile - try to open Gmail app first, fallback to web
+  const userAgent = navigator.userAgent.toLowerCase();
+  const isMobile = /android|webos|iphone|ipad|ipod|blackberry|windows phone/.test(userAgent);
 
+  if (isMobile) {
+    // Try Gmail app first (for Android)
+    const gmailAppLink = `googlegmail://co?to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`;
+    window.location.href = gmailAppLink;
+    
+    // Fallback: if Gmail app doesn't open, open web version
+    setTimeout(function() {
+      window.location.href = gmailLink;
+    }, 500);
+  } else {
+    // Desktop - open in new tab
+    window.open(gmailLink, '_blank');
+  }
+
+  setTimeout(() => {
+    closeForm();
+    successMsg.classList.remove('show');
+    submitBtn.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+  }, 4000);
+}
     document.addEventListener('click', function(e) {
       const card = e.target.closest('.project-card');
       if (card && !e.target.closest('.card-cta')) {
