@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -453,66 +454,30 @@
       inset: 0;
     }
     .skill-badge {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  gap: 0.3rem;
-  background: rgba(13, 17, 40, 0.92);
-  border: 1px solid rgba(139, 92, 246, 0.3);
-  backdrop-filter: blur(12px);
-  border-radius: 100px;
-  padding: 0.3rem 0.7rem;
-  font-size: 0.6rem;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  color: var(--text);
-  white-space: nowrap;
-  animation: badgeFloat ease-in-out infinite;
-  transform-origin: center;
-  pointer-events: none;
-  z-index: 1;
-  box-shadow: 0 2px 15px rgba(0,0,0,0.3);
-}
-.skill-badge .bd {
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: var(--violet);
-  flex-shrink: 0;
-}
-
-.skill-badge .bd {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--violet);
-  flex-shrink: 0;
-}
-
-/* ===== MOBILE BADGE ADJUSTMENTS ===== */
-@media (max-width: 768px) {
-  .skill-badge {
-    font-size: 0.5rem !important;
-    padding: 0.15rem 0.5rem !important;
-    gap: 0.15rem !important;
-  }
-  .skill-badge .bd {
-    width: 4px !important;
-    height: 4px !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .skill-badge {
-    font-size: 0.4rem !important;
-    padding: 0.1rem 0.35rem !important;
-    gap: 0.1rem !important;
-  }
-  .skill-badge .bd {
-    width: 3px !important;
-    height: 3px !important;
-  }
-}
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(13, 17, 40, 0.9);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      backdrop-filter: blur(12px);
+      border-radius: 100px;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      color: var(--text);
+      white-space: nowrap;
+      animation: badgeFloat ease-in-out infinite;
+      transform-origin: center;
+    }
+    .skill-badge .bd {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--violet);
+      flex-shrink: 0;
+    }
     @keyframes badgeFloat {
       0%,
       100% {
@@ -1378,46 +1343,7 @@
       display: block;
     }
 
-    /* ===== RESPONSIVE ===== */
-
-/* Hide cursor on touch devices */
-@media (hover: none) and (pointer: coarse) {
-  #cursor,
-  #cursor-ring {
-    display: none !important;
-  }
-  body {
-    cursor: auto !important;
-  }
-  a,
-  button,
-  .project-card {
-    cursor: pointer !important;
-  }
-}
-
-/* ===== TABLETS (768px - 1024px) ===== */
-@media (max-width: 1024px) {
-  .hero-inner {
-    gap: 2rem;
-  }
-  .photo-orbit {
-    width: min(320px, 60vw);
-    height: min(320px, 60vw);
-    transform: translateX(0);
-  }
-  .hero-h1 {
-    font-size: clamp(2.5rem, 4.5vw, 3.8rem);
-  }
-  .process-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .section-inner {
-    padding: 5rem 2rem;
-  }
-}
-
-    /* ---- MOBILE (LARGER SIZES) ---- */
+        /* ---- MOBILE (LARGER SIZES) ---- */
     @media (max-width: 768px) {
       /* NAV */
       nav {
@@ -2061,25 +1987,27 @@
       <button class="close-btn" id="closeFormBtn">&times;</button>
       <h3>Let's talk</h3>
       <p>Fill the form and I'll get back to you within 24h.</p>
-      <form id="contactForm" onsubmit="sendEmail(event)">
-        <div class="form-group">
-          <label>Your name</label>
-          <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
-        </div>
-        <div class="form-group">
-          <label>Your email</label>
-          <input type="email" name="email" id="formEmail" placeholder="alex@studio.com" required>
-        </div>
-        <div class="form-group">
-          <label>Message</label>
-          <textarea name="message" id="formMessage" placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button type="submit" class="form-submit" id="formSubmitBtn"><i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message</button>
-        <div class="form-success" id="formSuccess">
-          <i class="fas fa-check-circle"></i>
-          <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
-        </div>
-      </form>
+     <form id="contactForm" onsubmit="sendEmail(event)">
+  <div class="form-group">
+    <label>Your name</label>
+    <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
+  </div>
+  <div class="form-group">
+    <label>Your email</label>
+    <input type="email" name="email" id="formEmail" placeholder="alex@studio.com" required>
+  </div>
+  <div class="form-group">
+    <label>Message</label>
+    <textarea name="message" id="formMessage" placeholder="Tell me about your project..."></textarea>
+  </div>
+  <button type="submit" class="form-submit" id="formSubmitBtn">
+    <i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message
+  </button>
+  <div class="form-success" id="formSuccess">
+    <i class="fas fa-check-circle"></i>
+    <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
+  </div>
+</form>
     </div>
   </div>
 
@@ -2233,51 +2161,27 @@
       pc.appendChild(p);
     }
 
-    // ===== BADGES - Responsive =====
-const badges = ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems",
-  "Information Architecture", "Interaction Design", "Usability Testing", "Design Thinking"
-];
-const orbit = document.getElementById('badgeOrbit');
-
-// Responsive radius based on screen size
-let badgeRadius = 50;
-let fontSize = 0.7;
-let padding = '0.4rem 0.9rem';
-
-if (window.innerWidth < 480) {
-  badgeRadius = 38;
-  fontSize = 0.4;
-  padding = '0.12rem 0.4rem';
-} else if (window.innerWidth < 768) {
-  badgeRadius = 44;
-  fontSize = 0.5;
-  padding = '0.18rem 0.6rem';
-}
-
-// Clear existing badges
-orbit.innerHTML = '';
-
-badges.forEach((b, i) => {
-  const angle = (i / badges.length) * 360;
-  const rad = angle * Math.PI / 180;
-  const r = badgeRadius;
-  const cx = 50,
-    cy = 50;
-  let bx = cx + r * Math.cos(rad);
-  let by = cy + r * Math.sin(rad);
-  
-  // Adjust specific badges for better spacing
-  if (b === "Interaction Design") bx -= 8;
-  if (b === "Usability Testing") bx += 6;
-  if (b === "Information Architecture") bx -= 4;
-  
-  const el = document.createElement('div');
-  el.className = 'skill-badge';
-  el.innerHTML = `<span class="bd"></span>${b}`;
-  el.style.cssText =
-    `left:${bx}%;top:${by}%;transform:translate(-50%,-50%);animation-duration:${3 + i * 0.4}s;animation-delay:${-i * 0.3}s;font-size:${fontSize}rem;padding:${padding};`;
-  orbit.appendChild(el);
-});
+    // ===== BADGES =====
+    const badges = ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems",
+      "Information Architecture", "Interaction Design", "Usability Testing", "Design Thinking"
+    ];
+    const orbit = document.getElementById('badgeOrbit');
+    badges.forEach((b, i) => {
+      const angle = (i / badges.length) * 360;
+      const rad = angle * Math.PI / 180;
+      const r = 50;
+      const cx = 50,
+        cy = 50;
+      let bx = cx + r * Math.cos(rad);
+      let by = cy + r * Math.sin(rad);
+      if (b === "Interaction Design") bx -= 12;
+      const el = document.createElement('div');
+      el.className = 'skill-badge';
+      el.innerHTML = `<span class="bd"></span>${b}`;
+      el.style.cssText =
+        `left:${bx}%;top:${by}%;transform:translate(-50%,-50%);animation-duration:${3 + i * 0.4}s;animation-delay:${-i * 0.3}s;`;
+      orbit.appendChild(el);
+    });
 
     // ===== TICKER =====
     const tickerItems = ["200+ Screens Designed", "·", "UX/UI Designer", "·", "UX Research", "·",
@@ -2359,7 +2263,7 @@ badges.forEach((b, i) => {
       cl.appendChild(a);
     });
 
-    // ===== OPTIMIZED CAROUSEL =====
+    // ===== CAROUSEL =====
     let cIdx = 0;
     let autoPlay = localStorage.getItem('autoplay') !== 'false';
     let autoTimer = null;
@@ -2600,78 +2504,122 @@ badges.forEach((b, i) => {
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
 
-    // ===== FORM HANDLER =====
-    const overlay = document.getElementById('formOverlay');
-    const closeBtn = document.getElementById('closeFormBtn');
-    const form = document.getElementById('contactForm');
-    const successMsg = document.getElementById('formSuccess');
-    const submitBtn = document.getElementById('formSubmitBtn');
+   // ===== FORM HANDLER =====
+const overlay = document.getElementById('formOverlay');
+const closeBtn = document.getElementById('closeFormBtn');
+const form = document.getElementById('contactForm');
+const successMsg = document.getElementById('formSuccess');
+const submitBtn = document.getElementById('formSubmitBtn');
 
-    function openForm() {
-      overlay.classList.add('open');
-      successMsg.classList.remove('show');
-      submitBtn.style.display = 'block';
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-      form.reset();
-    }
+function openForm() {
+  overlay.classList.add('open');
+  successMsg.classList.remove('show');
+  submitBtn.style.display = 'block';
+  submitBtn.disabled = false;
+  submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+  form.reset();
+}
 
-    function closeForm() {
-      overlay.classList.remove('open');
-    }
+function closeForm() {
+  overlay.classList.remove('open');
+}
 
-    closeBtn.addEventListener('click', closeForm);
-    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
-    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
+closeBtn.addEventListener('click', closeForm);
+overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
 
-    document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault();
-      openForm(); });
+document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault(); openForm(); });
 
-    function sendEmail(e) {
-      e.preventDefault();
+// ===== SEND EMAIL FUNCTION - FIXED =====
+function sendEmail(e) {
+  e.preventDefault();
 
-      const name = document.getElementById('formName').value.trim();
-      const email = document.getElementById('formEmail').value.trim();
-      const message = document.getElementById('formMessage').value.trim();
+  const name = document.getElementById('formName').value.trim();
+  const email = document.getElementById('formEmail').value.trim();
+  const message = document.getElementById('formMessage').value.trim();
 
-      if (!name || !email) {
-        alert('Please fill your name and email.');
-        return;
-      }
+  if (!name || !email) {
+    alert('Please fill your name and email.');
+    return;
+  }
 
-      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Message:\n${message || '(no message)'}\n\n` +
-        `--\nSent from HMF Portfolio`
-      );
+  const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+  const body = encodeURIComponent(
+    `Name: ${name}\n` +
+    `Email: ${email}\n` +
+    `Message:\n${message || '(no message)'}\n\n` +
+    `--\nSent from HMF Portfolio`
+  );
 
-      submitBtn.style.display = 'none';
-      successMsg.classList.add('show');
+  const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`;
 
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`, '_blank');
+  // Show success message
+  submitBtn.style.display = 'none';
+  successMsg.classList.add('show');
 
-      setTimeout(() => {
-        closeForm();
-        successMsg.classList.remove('show');
-        submitBtn.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-      }, 4000);
-    }
+  // Open Gmail - works on all devices
+  window.location.href = gmailLink;
 
-    document.addEventListener('click', function(e) {
-      const card = e.target.closest('.project-card');
-      if (card && !e.target.closest('.card-cta')) {
-        openForm();
-      }
-    });
+  // Close form after 4 seconds
+  setTimeout(() => {
+    closeForm();
+    successMsg.classList.remove('show');
+    submitBtn.style.display = 'block';
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+  }, 4000);
+}
 
-    document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault();
-      openForm(); });
+// Click on project card opens form
+document.addEventListener('click', function(e) {
+  const card = e.target.closest('.project-card');
+  if (card && !e.target.closest('.card-cta')) {
+    openForm();
+  }
+});
+
+// "Email Me" contact chip
+document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault(); openForm(); });
   </script>
 
+<!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
 </body>
 
 </html>
