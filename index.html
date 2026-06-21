@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -449,28 +448,37 @@
       object-fit: cover;
       object-position: top center;
     }
+    
+    /* ===== UPDATED BADGE ORBIT STYLES ===== */
     .badge-orbit {
       position: absolute;
       inset: 0;
+      pointer-events: none;
     }
+
+    /* ===== DESKTOP BADGE STYLES (KEPT AS IS) ===== */
     .skill-badge {
       position: absolute;
       display: flex;
       align-items: center;
-      gap: 0.4rem;
-      background: rgba(13, 17, 40, 0.9);
+      gap: 0.3rem;
+      background: rgba(13, 17, 40, 0.92);
       border: 1px solid rgba(139, 92, 246, 0.3);
       backdrop-filter: blur(12px);
       border-radius: 100px;
-      padding: 0.4rem 0.9rem;
-      font-size: 0.7rem;
+      padding: 0.3rem 0.7rem;
+      font-size: 0.6rem;
       font-weight: 600;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.04em;
       color: var(--text);
       white-space: nowrap;
       animation: badgeFloat ease-in-out infinite;
       transform-origin: center;
+      pointer-events: none;
+      z-index: 1;
+      box-shadow: 0 2px 15px rgba(0,0,0,0.3);
     }
+
     .skill-badge .bd {
       width: 6px;
       height: 6px;
@@ -478,6 +486,7 @@
       background: var(--violet);
       flex-shrink: 0;
     }
+
     @keyframes badgeFloat {
       0%,
       100% {
@@ -485,6 +494,58 @@
       }
       50% {
         transform: translate(0, -6px) scale(1.02);
+      }
+    }
+
+    /* ===== RESPONSIVE BADGE ADJUSTMENTS - MOBILE ONLY ===== */
+    @media (max-width: 1024px) {
+      .badge-orbit {
+        transform: scale(0.9);
+        transform-origin: center;
+      }
+      .skill-badge {
+        font-size: 0.55rem !important;
+        padding: 0.25rem 0.6rem !important;
+        gap: 0.25rem !important;
+      }
+      .skill-badge .bd {
+        width: 5px !important;
+        height: 5px !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .badge-orbit {
+        transform: scale(0.95);
+        transform-origin: center;
+      }
+      .skill-badge {
+        font-size: 0.5rem !important;
+        padding: 0.2rem 0.55rem !important;
+        gap: 0.2rem !important;
+        border-width: 1px !important;
+      }
+      .skill-badge .bd {
+        width: 4px !important;
+        height: 4px !important;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .badge-orbit {
+        transform: scale(0.92);
+        transform-origin: center;
+      }
+      .skill-badge {
+        font-size: 0.45rem !important;
+        padding: 0.18rem 0.5rem !important;
+        gap: 0.15rem !important;
+        border-width: 1px !important;
+        border-radius: 50px !important;
+      }
+      .skill-badge .bd {
+        width: 3px !important;
+        height: 3px !important;
       }
     }
 
@@ -1343,7 +1404,46 @@
       display: block;
     }
 
-        /* ---- MOBILE (LARGER SIZES) ---- */
+    /* ===== RESPONSIVE ===== */
+
+    /* Hide cursor on touch devices */
+    @media (hover: none) and (pointer: coarse) {
+      #cursor,
+      #cursor-ring {
+        display: none !important;
+      }
+      body {
+        cursor: auto !important;
+      }
+      a,
+      button,
+      .project-card {
+        cursor: pointer !important;
+      }
+    }
+
+    /* ===== TABLETS (768px - 1024px) ===== */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        gap: 2rem;
+      }
+      .photo-orbit {
+        width: min(320px, 60vw);
+        height: min(320px, 60vw);
+        transform: translateX(0);
+      }
+      .hero-h1 {
+        font-size: clamp(2.5rem, 4.5vw, 3.8rem);
+      }
+      .process-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .section-inner {
+        padding: 5rem 2rem;
+      }
+    }
+
+    /* ---- MOBILE (LARGER SIZES) ---- */
     @media (max-width: 768px) {
       /* NAV */
       nav {
@@ -1447,15 +1547,6 @@
       }
       .photo-glow-ring-3 {
         inset: -24px;
-      }
-      .skill-badge {
-        font-size: 0.5rem;
-        padding: 0.18rem 0.6rem;
-        gap: 0.18rem;
-      }
-      .skill-badge .bd {
-        width: 4px;
-        height: 4px;
       }
 
       /* TICKER */
@@ -1760,14 +1851,6 @@
         width: min(200px, 55vw);
         height: min(200px, 55vw);
       }
-      .skill-badge {
-        font-size: 0.4rem;
-        padding: 0.12rem 0.4rem;
-      }
-      .skill-badge .bd {
-        width: 3px;
-        height: 3px;
-      }
 
       .project-card {
         max-width: 280px;
@@ -1987,27 +2070,25 @@
       <button class="close-btn" id="closeFormBtn">&times;</button>
       <h3>Let's talk</h3>
       <p>Fill the form and I'll get back to you within 24h.</p>
-     <form id="contactForm" onsubmit="sendEmail(event)">
-  <div class="form-group">
-    <label>Your name</label>
-    <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
-  </div>
-  <div class="form-group">
-    <label>Your email</label>
-    <input type="email" name="email" id="formEmail" placeholder="alex@studio.com" required>
-  </div>
-  <div class="form-group">
-    <label>Message</label>
-    <textarea name="message" id="formMessage" placeholder="Tell me about your project..."></textarea>
-  </div>
-  <button type="submit" class="form-submit" id="formSubmitBtn">
-    <i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message
-  </button>
-  <div class="form-success" id="formSuccess">
-    <i class="fas fa-check-circle"></i>
-    <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
-  </div>
-</form>
+      <form id="contactForm" onsubmit="sendEmail(event)">
+        <div class="form-group">
+          <label>Your name</label>
+          <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
+        </div>
+        <div class="form-group">
+          <label>Your email</label>
+          <input type="email" name="email" id="formEmail" placeholder="alex@studio.com" required>
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea name="message" id="formMessage" placeholder="Tell me about your project..."></textarea>
+        </div>
+        <button type="submit" class="form-submit" id="formSubmitBtn"><i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message</button>
+        <div class="form-success" id="formSuccess">
+          <i class="fas fa-check-circle"></i>
+          <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
+        </div>
+      </form>
     </div>
   </div>
 
@@ -2161,26 +2242,79 @@
       pc.appendChild(p);
     }
 
-    // ===== BADGES =====
-    const badges = ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems",
+    // ===== BADGES - RESPONSIVE (MOBILE FIX - MORE SPACING) =====
+    const allBadges = ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems",
       "Information Architecture", "Interaction Design", "Usability Testing", "Design Thinking"
     ];
+
     const orbit = document.getElementById('badgeOrbit');
-    badges.forEach((b, i) => {
-      const angle = (i / badges.length) * 360;
-      const rad = angle * Math.PI / 180;
-      const r = 50;
-      const cx = 50,
-        cy = 50;
-      let bx = cx + r * Math.cos(rad);
-      let by = cy + r * Math.sin(rad);
-      if (b === "Interaction Design") bx -= 12;
-      const el = document.createElement('div');
-      el.className = 'skill-badge';
-      el.innerHTML = `<span class="bd"></span>${b}`;
-      el.style.cssText =
-        `left:${bx}%;top:${by}%;transform:translate(-50%,-50%);animation-duration:${3 + i * 0.4}s;animation-delay:${-i * 0.3}s;`;
-      orbit.appendChild(el);
+    let badges = allBadges;
+    let badgeRadius = 50;
+    const cx = 50,
+      cy = 50;
+
+    function getResponsiveBadges() {
+      const width = window.innerWidth;
+      if (width < 480) {
+        // Small phone: show 6 badges with much more spacing
+        return {
+          badges: ["UX Research", "User Flows", "Wireframing", "Prototyping", "Interaction Design", "Usability Testing"],
+          radius: 48 // Increased from 38 - pushes badges way out
+        };
+      } else if (width < 768) {
+        // Mobile: show 8 badges with more spacing
+        return {
+          badges: ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems", "Interaction Design", "Usability Testing"],
+          radius: 50 // Increased from 44
+        };
+      } else {
+        // Desktop: show all 10 badges (unchanged)
+        return {
+          badges: allBadges,
+          radius: 50
+        };
+      }
+    }
+
+    function renderBadges() {
+      const config = getResponsiveBadges();
+      badges = config.badges;
+      badgeRadius = config.radius;
+
+      orbit.innerHTML = '';
+
+      badges.forEach((b, i) => {
+        const angle = (i / badges.length) * 360;
+        const rad = angle * Math.PI / 180;
+        const r = badgeRadius;
+
+        let bx = cx + r * Math.cos(rad);
+        let by = cy + r * Math.sin(rad);
+
+        // Fine-tune specific badges - mobile adjustments
+        if (b === "Interaction Design") { bx -= 8; by += 2; }
+        if (b === "Usability Testing") { bx += 8; by -= 2; }
+        if (b === "Prototyping") { by += 4; }
+        if (b === "Wireframing") { by -= 4; }
+        if (b === "UX Research") { bx -= 4; }
+
+        const el = document.createElement('div');
+        el.className = 'skill-badge';
+        el.innerHTML = `<span class="bd"></span>${b}`;
+        el.style.cssText =
+          `left:${bx}%;top:${by}%;transform:translate(-50%,-50%);animation-duration:${3 + i * 0.4}s;animation-delay:${-i * 0.3}s;`;
+        orbit.appendChild(el);
+      });
+    }
+
+    renderBadges();
+
+    let resizeTimer;
+    window.addEventListener('resize', function() {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(function() {
+        renderBadges();
+      }, 300);
     });
 
     // ===== TICKER =====
@@ -2263,7 +2397,7 @@
       cl.appendChild(a);
     });
 
-    // ===== CAROUSEL =====
+    // ===== OPTIMIZED CAROUSEL =====
     let cIdx = 0;
     let autoPlay = localStorage.getItem('autoplay') !== 'false';
     let autoTimer = null;
@@ -2504,122 +2638,78 @@
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
 
-   // ===== FORM HANDLER =====
-const overlay = document.getElementById('formOverlay');
-const closeBtn = document.getElementById('closeFormBtn');
-const form = document.getElementById('contactForm');
-const successMsg = document.getElementById('formSuccess');
-const submitBtn = document.getElementById('formSubmitBtn');
+    // ===== FORM HANDLER =====
+    const overlay = document.getElementById('formOverlay');
+    const closeBtn = document.getElementById('closeFormBtn');
+    const form = document.getElementById('contactForm');
+    const successMsg = document.getElementById('formSuccess');
+    const submitBtn = document.getElementById('formSubmitBtn');
 
-function openForm() {
-  overlay.classList.add('open');
-  successMsg.classList.remove('show');
-  submitBtn.style.display = 'block';
-  submitBtn.disabled = false;
-  submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-  form.reset();
-}
+    function openForm() {
+      overlay.classList.add('open');
+      successMsg.classList.remove('show');
+      submitBtn.style.display = 'block';
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+      form.reset();
+    }
 
-function closeForm() {
-  overlay.classList.remove('open');
-}
+    function closeForm() {
+      overlay.classList.remove('open');
+    }
 
-closeBtn.addEventListener('click', closeForm);
-overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
+    closeBtn.addEventListener('click', closeForm);
+    overlay.addEventListener('click', (e) => { if (e.target === overlay) closeForm(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeForm(); });
 
-document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault(); openForm(); });
+    document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault();
+      openForm(); });
 
-// ===== SEND EMAIL FUNCTION - FIXED =====
-function sendEmail(e) {
-  e.preventDefault();
+    function sendEmail(e) {
+      e.preventDefault();
 
-  const name = document.getElementById('formName').value.trim();
-  const email = document.getElementById('formEmail').value.trim();
-  const message = document.getElementById('formMessage').value.trim();
+      const name = document.getElementById('formName').value.trim();
+      const email = document.getElementById('formEmail').value.trim();
+      const message = document.getElementById('formMessage').value.trim();
 
-  if (!name || !email) {
-    alert('Please fill your name and email.');
-    return;
-  }
+      if (!name || !email) {
+        alert('Please fill your name and email.');
+        return;
+      }
 
-  const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-  const body = encodeURIComponent(
-    `Name: ${name}\n` +
-    `Email: ${email}\n` +
-    `Message:\n${message || '(no message)'}\n\n` +
-    `--\nSent from HMF Portfolio`
-  );
+      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
+      const body = encodeURIComponent(
+        `Name: ${name}\n` +
+        `Email: ${email}\n` +
+        `Message:\n${message || '(no message)'}\n\n` +
+        `--\nSent from HMF Portfolio`
+      );
 
-  const gmailLink = `https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`;
+      submitBtn.style.display = 'none';
+      successMsg.classList.add('show');
 
-  // Show success message
-  submitBtn.style.display = 'none';
-  successMsg.classList.add('show');
+      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`, '_blank');
 
-  // Open Gmail - works on all devices
-  window.location.href = gmailLink;
+      setTimeout(() => {
+        closeForm();
+        successMsg.classList.remove('show');
+        submitBtn.style.display = 'block';
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+      }, 4000);
+    }
 
-  // Close form after 4 seconds
-  setTimeout(() => {
-    closeForm();
-    successMsg.classList.remove('show');
-    submitBtn.style.display = 'block';
-    submitBtn.disabled = false;
-    submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-  }, 4000);
-}
+    document.addEventListener('click', function(e) {
+      const card = e.target.closest('.project-card');
+      if (card && !e.target.closest('.card-cta')) {
+        openForm();
+      }
+    });
 
-// Click on project card opens form
-document.addEventListener('click', function(e) {
-  const card = e.target.closest('.project-card');
-  if (card && !e.target.closest('.card-cta')) {
-    openForm();
-  }
-});
-
-// "Email Me" contact chip
-document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault(); openForm(); });
+    document.getElementById('emailChip')?.addEventListener('click', function(e) { e.preventDefault();
+      openForm(); });
   </script>
 
-<!-- Code injected by live-server -->
-<script>
-	// <![CDATA[  <-- For SVG support
-	if ('WebSocket' in window) {
-		(function () {
-			function refreshCSS() {
-				var sheets = [].slice.call(document.getElementsByTagName("link"));
-				var head = document.getElementsByTagName("head")[0];
-				for (var i = 0; i < sheets.length; ++i) {
-					var elem = sheets[i];
-					var parent = elem.parentElement || head;
-					parent.removeChild(elem);
-					var rel = elem.rel;
-					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-					}
-					parent.appendChild(elem);
-				}
-			}
-			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-			var address = protocol + window.location.host + window.location.pathname + '/ws';
-			var socket = new WebSocket(address);
-			socket.onmessage = function (msg) {
-				if (msg.data == 'reload') window.location.reload();
-				else if (msg.data == 'refreshcss') refreshCSS();
-			};
-			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-				console.log('Live reload enabled.');
-				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-			}
-		})();
-	}
-	else {
-		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
-	}
-	// ]]>
-</script>
 </body>
 
 </html>
