@@ -2070,7 +2070,7 @@
       <button class="close-btn" id="closeFormBtn">&times;</button>
       <h3>Let's talk</h3>
       <p>Fill the form and I'll get back to you within 24h.</p>
-      <form id="contactForm" onsubmit="sendEmail(event)">
+      <form id="contactForm">
         <div class="form-group">
           <label>Your name</label>
           <input type="text" name="name" id="formName" placeholder="e.g. Alex Rivera" required>
@@ -2086,11 +2086,18 @@
         <button type="submit" class="form-submit" id="formSubmitBtn"><i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message</button>
         <div class="form-success" id="formSuccess">
           <i class="fas fa-check-circle"></i>
-          <p style="color:var(--text); font-weight:500;">✅ Message sent to Huzaifah! Check your Gmail. 📧</p>
+          <p style="color:var(--text); font-weight:500;">✅ Message sent successfully! I'll get back to you soon. 📧</p>
+        </div>
+        <div class="form-error" id="formError">
+          <i class="fas fa-exclamation-circle"></i>
+          <p style="color:#f87171;">❌ Failed to send message. Please try again.</p>
         </div>
       </form>
     </div>
   </div>
+
+  <!-- EmailJS SDK -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 
   <script>
     // ===== DATA =====
@@ -2614,38 +2621,36 @@
     document.querySelectorAll('.reveal,.journey-item').forEach(el => obs.observe(el));
 
     // ===== NAV ACTIVE - FIXED =====
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav-links a");
+    const sections = document.querySelectorAll("section");
+    const navLinks = document.querySelectorAll(".nav-links a");
 
-window.addEventListener("scroll", () => {
-  let current = "";
-  const scrollPosition = window.scrollY + 150; // Add offset for better detection
-  
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop;
-    const sectionHeight = section.offsetHeight;
-    
-    // Check if the current scroll position is within this section
-    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-      current = section.getAttribute("id");
-    }
-  });
-  
-  // If we're at the very bottom of the page, set current to the last section
-  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10) {
-    const lastSection = sections[sections.length - 1];
-    if (lastSection) {
-      current = lastSection.getAttribute("id");
-    }
-  }
-  
-  navLinks.forEach(link => {
-    link.classList.remove("active-nav");
-    if (link.getAttribute("href") === "#" + current) {
-      link.classList.add("active-nav");
-    }
-  });
-});
+    window.addEventListener("scroll", () => {
+      let current = "";
+      const scrollPosition = window.scrollY + 150;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          current = section.getAttribute("id");
+        }
+      });
+
+      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10) {
+        const lastSection = sections[sections.length - 1];
+        if (lastSection) {
+          current = lastSection.getAttribute("id");
+        }
+      }
+
+      navLinks.forEach(link => {
+        link.classList.remove("active-nav");
+        if (link.getAttribute("href") === "#" + current) {
+          link.classList.add("active-nav");
+        }
+      });
+    });
 
     // ===== MAGNETIC =====
     document.querySelectorAll('.btn-primary,.btn-ghost,.nav-hire').forEach(btn => {
@@ -2658,16 +2663,25 @@ window.addEventListener("scroll", () => {
       btn.addEventListener('mouseleave', () => { btn.style.transform = ''; });
     });
 
+    // ===== EMAILJS SETUP =====
+    // Initialize EmailJS with your Public Key
+    // Sign up at https://www.emailjs.com/ to get your keys
+    (function() {
+      emailjs.init("B__PTeL-j5QsIeQGt");
+    })();
+
     // ===== FORM HANDLER =====
     const overlay = document.getElementById('formOverlay');
     const closeBtn = document.getElementById('closeFormBtn');
     const form = document.getElementById('contactForm');
     const successMsg = document.getElementById('formSuccess');
+    const errorMsg = document.getElementById('formError');
     const submitBtn = document.getElementById('formSubmitBtn');
 
     function openForm() {
       overlay.classList.add('open');
       successMsg.classList.remove('show');
+      errorMsg.classList.remove('show');
       submitBtn.style.display = 'block';
       submitBtn.disabled = false;
       submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
@@ -2685,7 +2699,8 @@ window.addEventListener("scroll", () => {
     document.getElementById('openFormBtn').addEventListener('click', function(e) { e.preventDefault();
       openForm(); });
 
-    function sendEmail(e) {
+    // Form submission with EmailJS
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const name = document.getElementById('formName').value.trim();
@@ -2697,27 +2712,50 @@ window.addEventListener("scroll", () => {
         return;
       }
 
-      const subject = encodeURIComponent(`Portfolio inquiry from ${name}`);
-      const body = encodeURIComponent(
-        `Name: ${name}\n` +
-        `Email: ${email}\n` +
-        `Message:\n${message || '(no message)'}\n\n` +
-        `--\nSent from HMF Portfolio`
-      );
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
 
-      submitBtn.style.display = 'none';
-      successMsg.classList.add('show');
+      // Prepare template parameters
+      const templateParams = {
+  name: name,
+  email: email,
+  message: message || '(no message)',
+  time: new Date().toLocaleString(),
+  to_email: 'huzaifahmalik2470@gmail.com'
+};
 
-      window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=huzaifahmalik2470@gmail.com&su=${subject}&body=${body}`, '_blank');
+      // Send email using EmailJS
+      // Replace 'YOUR_SERVICE_ID' and 'YOUR_TEMPLATE_ID' with your actual IDs
+      emailjs.send('service_2rawsm8', 'template_4t8svqf', templateParams)
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
+          // Show success message
+          submitBtn.style.display = 'none';
+          successMsg.classList.add('show');
+          errorMsg.classList.remove('show');
 
-      setTimeout(() => {
-        closeForm();
-        successMsg.classList.remove('show');
-        submitBtn.style.display = 'block';
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
-      }, 4000);
-    }
+          // Reset form after 4 seconds
+          setTimeout(() => {
+            closeForm();
+            successMsg.classList.remove('show');
+            submitBtn.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+            form.reset();
+          }, 4000);
+        }, function(error) {
+          console.log('FAILED...', error);
+          // Show error message
+          errorMsg.classList.add('show');
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fas fa-paper-plane" style="margin-right:0.5rem;"></i> Send message';
+
+          setTimeout(() => {
+            errorMsg.classList.remove('show');
+          }, 4000);
+        });
+    });
 
     document.addEventListener('click', function(e) {
       const card = e.target.closest('.project-card');
