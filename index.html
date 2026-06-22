@@ -2259,13 +2259,13 @@
         // Small phone: show 6 badges with much more spacing
         return {
           badges: ["UX Research", "User Flows", "Wireframing", "Prototyping", "Interaction Design", "Usability Testing"],
-          radius: 48 // Increased from 38 - pushes badges way out
+          radius: 48
         };
       } else if (width < 768) {
         // Mobile: show 8 badges with more spacing
         return {
           badges: ["Card Sorting", "UX Research", "User Flows", "Wireframing", "Prototyping", "Design Systems", "Interaction Design", "Usability Testing"],
-          radius: 50 // Increased from 44
+          radius: 50
         };
       } else {
         // Desktop: show all 10 badges (unchanged)
@@ -2291,11 +2291,12 @@
         let bx = cx + r * Math.cos(rad);
         let by = cy + r * Math.sin(rad);
 
-        // Fine-tune specific badges - mobile adjustments
-        if (b === "Interaction Design") { bx -= 8; by += 2; }
+        // Fine-tune specific badge positions
+        if (b === "Interaction Design") { bx -= 8; by -= 4; } // Moved UP (by -= 4)
+        if (b === "Design Thinking") { bx -= 8; } // Moved LEFT
+        if (b === "Prototyping") { bx -= 6; by += 4; } // Moved LEFT, slight down
+        if (b === "Wireframing") { bx -= 6; by -= 4; } // Moved LEFT, slight up
         if (b === "Usability Testing") { bx += 8; by -= 2; }
-        if (b === "Prototyping") { by += 4; }
-        if (b === "Wireframing") { by -= 4; }
         if (b === "UX Research") { bx -= 4; }
 
         const el = document.createElement('div');
@@ -2612,20 +2613,39 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal,.journey-item').forEach(el => obs.observe(el));
 
-    // ===== NAV ACTIVE =====
-    const sections = document.querySelectorAll("section");
-    const navLinks = document.querySelectorAll(".nav-links a");
-    window.addEventListener("scroll", () => {
-      let current = "";
-      sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
-        if (window.scrollY >= sectionTop) current = section.getAttribute("id");
-      });
-      navLinks.forEach(link => {
-        link.classList.remove("active-nav");
-        if (link.getAttribute("href") === "#" + current) link.classList.add("active-nav");
-      });
-    });
+    // ===== NAV ACTIVE - FIXED =====
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll(".nav-links a");
+
+window.addEventListener("scroll", () => {
+  let current = "";
+  const scrollPosition = window.scrollY + 150; // Add offset for better detection
+  
+  sections.forEach(section => {
+    const sectionTop = section.offsetTop;
+    const sectionHeight = section.offsetHeight;
+    
+    // Check if the current scroll position is within this section
+    if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+      current = section.getAttribute("id");
+    }
+  });
+  
+  // If we're at the very bottom of the page, set current to the last section
+  if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 10) {
+    const lastSection = sections[sections.length - 1];
+    if (lastSection) {
+      current = lastSection.getAttribute("id");
+    }
+  }
+  
+  navLinks.forEach(link => {
+    link.classList.remove("active-nav");
+    if (link.getAttribute("href") === "#" + current) {
+      link.classList.add("active-nav");
+    }
+  });
+});
 
     // ===== MAGNETIC =====
     document.querySelectorAll('.btn-primary,.btn-ghost,.nav-hire').forEach(btn => {
